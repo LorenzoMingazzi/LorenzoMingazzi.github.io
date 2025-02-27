@@ -150,3 +150,29 @@ body{
     background: #ffffff2d;
     border-radius: 4px;
 }
+
+/* Contenuto principale */
+.content {
+    margin-left: 250px; /* Spazio per la sidebar */
+    padding: 20px;
+    width: 100%;
+    overflow: auto;
+}
+
+.main-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* Sezioni di contenuto */
+section {
+    margin-bottom: 30px;
+}
+
+#projects ul{
+    padding-left: 20px;
+}
