@@ -176,3 +176,19 @@ section {
 #projects ul{
     padding-left: 20px;
 }
+
+/* Stile per il tasto di ritorno */
+.back-button {
+    display: inline-block;
+    background-color: #007bff; /* Colore blu */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Colore blu scuro quando hover */
+}
