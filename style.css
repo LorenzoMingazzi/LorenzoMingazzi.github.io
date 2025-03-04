@@ -10,14 +10,15 @@
 
 body{
     min-height: 100vh;
-    background: #d2d2d2;
+    background: #111111;
+    color: #ffff;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 85px;
+    width: 260px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -36,9 +37,17 @@ body{
     align-items: center;
 }
 
+.sidebar-header a {
+    display: flex; /* Permette il centramento */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+
 .sidebar-header img{
-    width:42px;
-    border-radius: 50%; 
+    width: 100px;
+    height: auto;
 }
 
 .sidebar-header h2 {
@@ -57,7 +66,7 @@ body{
 }
 
 .sidebar-links h4 span {
-    opacity: 0;
+    opacity: 1;
 }
 
 .sidebar:hover .sidebar-links h4 span {
@@ -72,7 +81,7 @@ body{
     position: relative;
 }
 
-.sidebar-links .menu-separator{
+/* .sidebar-links .menu-separator{
     position: absolute;
     left: 0;
     top: 50%;
@@ -83,7 +92,7 @@ body{
     background: #333578;
     transform-origin: right;
     transition-duration: 0s;
-}
+} */
 
 .sidebar:hover .sidebar-links .menu-separator{
     transition-delay: 0s;
@@ -146,11 +155,6 @@ body{
     margin-top: 0;
 }
 
-.sidebar:hover .user-account{
-    background: #ffffff2d;
-    border-radius: 4px;
-}
-
 /* Contenuto principale */
 .content {
     margin-left: 250px; /* Spazio per la sidebar */
@@ -165,7 +169,7 @@ body{
 }
 
 h1, h2 {
-    color: #333;
+    color: #fffff;
 }
 
 /* Sezioni di contenuto */
@@ -175,6 +179,10 @@ section {
 
 #projects ul{
     padding-left: 20px;
+}
+
+a{
+    color: #ffbb00; /* Cambia colore del testo */
 }
 
 /* Stile per il tasto di ritorno */
