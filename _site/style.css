@@ -250,3 +250,8 @@ section {
 .page-toc ul li a:hover {
     color: #007bff;
 }
+
+/* Aggiungi spazio tra gli elementi delle liste */
+ul li {
+    margin-bottom: 6px;  /* Aggiusta il valore secondo il tuo bisogno */
+}
