@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: #111111;
+    color: #ffff;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    margin-left: 0px; /* 260px (sidebar) + 30px di spazio */
+    text-align: left; /* Ensures left alignment of all text */
+}
+
+.spazio-inferiore {
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 50px;
+    text-align: left; /* Ensures the main title is left-aligned */
+}
+
+h1, h2 {
+    color: #ffff;
+    font-weight: bold;
+    text-align: left; /* Ensures headings are left-aligned */
+}
+
+/* Sezioni di contenuto */
+section {
+    margin-bottom: 30px;
+}
+
+#projects ul {
+    padding-left: 20px;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    text-align: left; /* Ensures anchor links are left-aligned */
+}
+
+a:hover {
+    color: #007bff;
+}
+
+/* Stile per il tasto di ritorno */
+.back-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.back-link {
+    color: white;
+}
+
+/* Stile per il Table of Contents */
+.page-toc {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(22, 26, 45, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.page-toc h3 {
+    color: white;
+    margin-bottom: 10px;
+    text-align: left; /* Ensures Table of Contents headings are left-aligned */
+}
+
+.page-toc ul {
+    list-style: none;
+    padding: 0;
+}
+
+.page-toc ul li {
+    margin-bottom: 8px;
+}
+
+.page-toc ul li a {
+    text-decoration: none;
+    color: #ddd;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.page-toc ul li a:hover {
+    color: #007bff;
+}
+
+/* Spaziatura tra elementi della lista */
+ul li {
+    margin-bottom: 6px;
+}
+
+/* Justify text in paragraphs and other text content */
+p, li {
+    text-align: justify; /* Justifies text inside paragraphs and list items */
+}

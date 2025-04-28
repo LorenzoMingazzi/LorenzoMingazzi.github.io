@@ -7,7 +7,7 @@
     <!-- Link for Google Font and Icons-->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/style_sidebar.css">
 </head>
 <body>
     <aside class="sidebar">
@@ -22,10 +22,10 @@
                 <a href="/pages/initial.html">Initial Examples</a>
             </h4>
             <li><a href="/pages/initial/linear_elasticity.html">Linear Elasticity</a></li>
-            <li><a href="/pages/initial/heat_diffusion.html">Heat Diffusion</a></li>
-            <li><a href="/pages/initial/advection.html">Advection</a></li>
+            <li><a href="/pages/initial/heat_diffusion.html">Diffusion-reaction</a></li>
+            <li><a href="/pages/initial/advection.html">Advection-diffusion</a></li>
             <h4>
-                <a href="/pages/elasticity_problems.html">Fracture Problems</a>
+                <a href="/pages/elasticity_problems.html">Fracture Mehcanics</a>
             </h4>
             <li><a href="/pages/elasticity/phase_field.html">Phase Field for fracture</a></li>
             <h4>
@@ -47,11 +47,17 @@
 
     <!-- Contenuto principale -->
     <main class="content">
-        <!-- Sezione progetti -->
+        <html lang="en">
+<head>
+    <!-- Qui metti il riferimento al file CSS -->
+    <link rel="stylesheet" href="/css/style_sidebar.css">
+    <link rel="stylesheet" href="/css/style_homepage.css"> <!-- Se hai un secondo CSS, tipo per lo stile delle sezioni -->
+</head>
+
+<!-- Sezione progetti -->
 <section id="home">
     <h1 class="main-title">The Deal with FEM</h1>
     <p>This website serves as a collection of examples and educational resources centered on the use of the <strong>deal.II</strong> library for finite element method (FEM) applications. 
-        <br>
         It is designed for students, researchers, and developers interested in scientific programming with C++, particularly in solving partial differential equations (PDEs) using FEM.</p>
 </section>
 
@@ -102,13 +108,15 @@
     <p>My name is Lorenzo Mingazzi, and I have a passion for scientific programming and numerical methods. 
         <br>
         Through this website, I aim to share my experiences and knowledge gained from working with the deal.II library.</p>
-    
 </section>
 
 <section id="contact">
     <h2>Contact</h2>
     <p>If you have any questions, feel free to <a href="mailto:lorenzo.mingazzi@unipr.it">contact me via email</a>.</p>
 </section>
+
+</html>
+
     </main>
 
 </body>

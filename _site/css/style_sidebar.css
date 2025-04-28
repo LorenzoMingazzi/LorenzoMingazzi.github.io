@@ -79,8 +79,8 @@ body {
    (tramite front matter/Jekyll o JavaScript) per mantenere il menu aperto finché non lo chiudi manualmente. */
 
 .sidebar-links h4 {
-    color: #fff;
-    font-weight: 500;
+    color: #ededed;
+    font-weight: 700;
     margin: 10px 0;
     white-space: nowrap;
     position: relative;
@@ -91,7 +91,7 @@ body {
 }
 
 .sidebar-links h4 a {
-    color: #ffff;
+    color: #ededed;
     text-decoration: none;
     flex-grow: 1; /* Il link occupa lo spazio disponibile */
 }
@@ -112,7 +112,7 @@ body {
     gap: 0 20px;
     color: #dbd4d4e3;
     font-weight: 500;
-    padding: 15px 10px;
+    padding: 4px 10px;
     white-space: nowrap;
     text-decoration: none;
 }

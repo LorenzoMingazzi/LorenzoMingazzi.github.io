@@ -7,7 +7,7 @@
     <!-- Link for Google Font and Icons-->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/style_sidebar.css">
 </head>
 <body>
     <aside class="sidebar">
@@ -22,10 +22,10 @@
                 <a href="/pages/initial.html">Initial Examples</a>
             </h4>
             <li><a href="/pages/initial/linear_elasticity.html">Linear Elasticity</a></li>
-            <li><a href="/pages/initial/heat_diffusion.html">Heat Diffusion</a></li>
-            <li><a href="/pages/initial/advection.html">Advection</a></li>
+            <li><a href="/pages/initial/heat_diffusion.html">Diffusion-reaction</a></li>
+            <li><a href="/pages/initial/advection.html">Advection-diffusion</a></li>
             <h4>
-                <a href="/pages/elasticity_problems.html">Fracture Problems</a>
+                <a href="/pages/elasticity_problems.html">Fracture Mehcanics</a>
             </h4>
             <li><a href="/pages/elasticity/phase_field.html">Phase Field for fracture</a></li>
             <h4>
@@ -47,16 +47,37 @@
 
     <!-- Contenuto principale -->
     <main class="content">
-        <h1>Here are the initial examples tackling basic concepts</h1>
-<p>Choose an example below to explore:</p>
+        <html lang="en">
+<head>
+    <!-- Qui metti il riferimento al file CSS -->
+    <link rel="stylesheet" href="/css/style_sidebar.css">
+    <link rel="stylesheet" href="/css/style_section_head.css"> <!-- Se hai un secondo CSS, tipo per lo stile delle sezioni -->
+</head>
 
+<h1>Initial Examples</h1><br>
+
+<div class="section-description">
+    <p>This section provides introductory examples that tackle fundamental problems in computational mechanics. The examples explore key phenomena including linear elasticity, diffusion-reaction, and advection-diffusion. These examples provide a solid foundation for understanding more complex coupled problems in computational simulations.</p>
+</div>
+
+<br>
 <ul>
-    <li><a href="/pages/initial/linear_elasticity.html">Linear Elasticity</a></li>
-    <li><a href="/pages/initial/heat_diffusion.html">Heat Diffusion</a></li>
-    <li><a href="/pages/initial/advection.html">Advection</a></li>
+    <li>
+        <a href="/pages/initial/linear_elasticity.html"><strong>Linear elasticity</strong> </a>
+        <p>This example examines how materials deform under external loads, assuming that the material's response follows Hooke's Law. It provides insights into stress and strain distributions, and is foundational in understanding the mechanical behavior of solid structures.</p>
+    </li>
+    <li>
+        <a href="/pages/initial/heat_diffusion.html"><strong>Diffusion-Reaction</strong></a>
+        <p>This example focuses on the interaction between diffusion and chemical reactions, modeling how substances spread and react over time. It is essential for understanding processes like heat transfer, pollutant dispersion, and biological processes such as drug delivery.</p>
+    </li>
+    <li>
+        <a href="/pages/initial/advection.html"><strong>Advection-Diffusion</strong></a>
+        <p>This example looks at the combined effects of advection (transport of a substance) and diffusion (spreading of a substance due to concentration gradients). It is widely used in environmental engineering, fluid dynamics, and heat transfer problems.</p>
+    </li>
 </ul>
 
 
+<br>
 <!-- Aggiungi il tasto per tornare alla prima pagina -->
 <a href="/index.html" class="back-button">Home</a>
 
