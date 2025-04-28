@@ -19,15 +19,27 @@
         </div>
         <ul class="sidebar-links">
             <h4>
+                <a href="/pages/start.html">Getting Started</a>
+            </h4>
+            <h4>
+                <a href="/pages/c++.html">C++</a>
+            </h4>
+            
+            <h4> </h4>
+            <h4>
                 <a href="/pages/initial.html">Initial Examples</a>
             </h4>
             <li><a href="/pages/initial/linear_elasticity.html">Linear Elasticity</a></li>
             <li><a href="/pages/initial/heat_diffusion.html">Diffusion-reaction</a></li>
             <li><a href="/pages/initial/advection.html">Advection-diffusion</a></li>
+            
+            <h4> </h4>
             <h4>
                 <a href="/pages/elasticity_problems.html">Fracture Mehcanics</a>
             </h4>
             <li><a href="/pages/elasticity/phase_field.html">Phase Field for fracture</a></li>
+
+            <h4> </h4>
             <h4>
                 <a href="/pages/coupled_problems.html">Coupled Problems</a>
             </h4>
@@ -72,9 +84,7 @@
 </div>
 
 <!-- Main Content -->
-<h1>Here is the basic demo for the Linear Elasticity problem</h1>
-<br>
-<br>
+<h1>Linear Elasticity</h1>
 
 <section id="section1">
     <h2>Introduction</h2>
@@ -91,31 +101,28 @@
         Linear elasticity is a branch of solid mechanics that deals with the behavior of solid materials under small deformations, where stress is proportional to strain. It is governed by Hooke's Law, which relates the stress and strain through material properties such as Young's modulus and Poisson's ratio. In this section, we will discuss the foundational equations of linear elasticity, including the stress-strain relationship, the equilibrium equations, and boundary conditions used in finite element analysis.
     </p>
 
-    <div class="equation">
-        <p>
-            <strong>Stress-Strain Relationship:</strong>
-            <br>
-            $$ \sigma = \mathbf{C} \epsilon $$
-        </p>
-        <p>
-            Where:
-            <br>
-            <ul>
-                <li><strong>σ</strong> is the stress tensor</li>
-                <li><strong>C</strong> is the stiffness matrix (material property)</li>
-                <li><strong>ε</strong> is the strain tensor</li>
-            </ul>            
-        </p>
-    </div>
+    <p>
+        <strong>Stress-Strain Relationship:</strong>
+        <br>
+        $$ \sigma = \mathbf{C} \epsilon $$
+    </p>
+    <p>
+        Where:
+        <br>
+        <ul>
+            <li><strong>σ</strong> is the stress tensor</li>
+            <li><strong>C</strong> is the stiffness matrix (material property)</li>
+            <li><strong>ε</strong> is the strain tensor</li>
+        </ul>            
+    </p>
 
-    <div class="equation">
-        <p>
-            <strong>Equilibrium Equation:</strong>
-            <br>
-            $$ \nabla \cdot \sigma + \mathbf{f} = 0 $$
-        </p>
-    </div>
-
+    
+    <p>
+        <strong>Equilibrium Equation:</strong>
+        <br>
+        $$ \nabla \cdot \sigma + \mathbf{f} = 0 $$
+    </p>
+    
     <p>
         These equations are essential for solving the linear elasticity problem using the Finite Element Method. The solution involves discretizing the domain into finite elements and solving the corresponding system of equations to obtain the displacement field.
     </p>
@@ -123,32 +130,33 @@
 
 <section id="section3">
     <h2>Implementation</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
-    </p>
-</section>
-
-<section id="section4">
-    <h2>Results</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
-    </p>
-</section>
-
-<section id="section5"></section>
-    <h2>Complete code</h2>
+    <h3>Include Files</h3>
+    <p>In this section, we import all the necessary deal.II library components 
+    as well as standard C++ headers required to set up and solve 
+    the linear elasticity problem. These include modules for finite element 
+    definitions, mesh handling, quadrature formulas, linear solvers, 
+    and other utilities. Including these files ensures that we have access 
+    to all the classes and functions needed throughout the program.</p>
 
     <div class="code-box">
         <pre>
 #include &ltdeal.II/base/quadrature_lib.h&gt
 #include &ltdeal.II/base/function.h&gt
 #include &ltdeal.II/base/timer.h&gt
+#include &ltdeal.II/base/utilities.h&gt
+#include &ltdeal.II/base/conditional_ostream.h&gt
+#include &ltdeal.II/base/index_set.h&gt
+#include &ltdeal.II/base/quadrature_point_data.h&gt
+#include &ltdeal.II/base/tensor_function.h&gt
+
+#include &ltdeal.II/grid/grid_generator.h&gt
+#include &ltdeal.II/grid/tria_accessor.h&gt
+#include &ltdeal.II/grid/grid_refinement.h&gt
+
+#include &ltdeal.II/dofs/dof_handler.h&gt
+#include &ltdeal.II/dofs/dof_tools.h&gt
+#include &ltdeal.II/dofs/dof_accessor.h&gt
+
 #include &ltdeal.II/lac/generic_linear_algebra.h&gt
 #include &ltdeal.II/lac/vector.h&gt
 #include &ltdeal.II/lac/full_matrix.h&gt
@@ -156,37 +164,69 @@
 #include &ltdeal.II/lac/petsc_precondition.h&gt
 #include &ltdeal.II/lac/solver_cg.h&gt
 #include &ltdeal.II/lac/affine_constraints.h&gt
+#include &ltdeal.II/lac/sparsity_tools.h&gt
 #include &ltdeal.II/lac/dynamic_sparsity_pattern.h&gt
-#include &ltdeal.II/grid/grid_generator.h&gt
-#include &ltdeal.II/dofs/dof_handler.h&gt
-#include &ltdeal.II/dofs/dof_tools.h&gt
-#include &ltdeal.II/dofs/dof_accessor.h&gt
-#include &ltdeal.II/grid/tria_accessor.h&gt
+
 #include &ltdeal.II/fe/fe_values.h&gt
 #include &ltdeal.II/fe/fe_system.h&gt
 #include &ltdeal.II/fe/fe_q.h&gt
-#include &ltdeal.II/grid/grid_refinement.h&gt
+
 #include &ltdeal.II/numerics/vector_tools.h&gt
 #include &ltdeal.II/numerics/matrix_tools.h&gt
 #include &ltdeal.II/numerics/data_out.h&gt
 #include &ltdeal.II/numerics/error_estimator.h&gt
-#include &ltdeal.II/base/utilities.h&gt
-#include &ltdeal.II/base/conditional_ostream.h&gt
-#include &ltdeal.II/base/index_set.h&gt
-#include &ltdeal.II/lac/sparsity_tools.h&gt
+
 #include &ltdeal.II/distributed/tria.h&gt
 #include &ltdeal.II/distributed/grid_refinement.h&gt
 #include &ltdeal.II/distributed/solution_transfer.h&gt
-#include &ltdeal.II/base/quadrature_point_data.h&gt
-#include &ltdeal.II/base/tensor_function.h&gt
+
 #include &ltfstream&gt
 #include &ltiostream&gt
 #include &ltrandom&gt
-
+        </pre>
+    </div>
+    
+    <h3>Namespace definition</h3>
+    <p>
+        We start by defining the namespace <strong>elas</strong>, which encapsulates 
+        all components related to the linear elasticity simulation.
+        Namespaces in C++ help organize the code and prevent name conflicts, 
+        keeping related classes and functions grouped logically.
+    </p>
+        
+    <div class="code-box">
+        <pre>
 namespace elas
 {
     using namespace dealii;
-    
+        </pre>
+    </div>
+
+    <h3>Elasticity class</h3>
+    <p>
+       The Elasticity class is templated on the problem dimension and manages the overall workflow.
+    </p>
+    <p><strong>Public functions:</strong></p>
+    <ul>
+        <li><code>Elasticity()</code>: Constructor to initialize the class.</li>
+        <li><code>run()</code>: Main driver function to execute the simulation.</li>
+    </ul>
+
+    <p><strong>Private functions:</strong></p>
+    <ul>
+        <li><code>create_mesh()</code>: Generate the initial mesh.</li>
+        <li><code>refine_mesh()</code>: Refine the mesh after load increments.</li>
+        <li><code>setup_constraints()</code>: Apply boundary conditions and hanging node constraints.</li>
+        <li><code>setup()</code>: Set up system structures (matrices, vectors, DoFs).</li>
+        <li><code>assemble()</code>: Assemble the system matrix and RHS.</li>
+        <li><code>solve_linear_problem()</code>: Solve the elasticity system.</li>
+        <li><code>output_results()</code> and <code>output_stress()</code>: Export displacement and stress fields.</li>
+        <li><code>reaction()</code>: Compute reaction forces at the boundaries.</li>
+    </ul>
+
+
+    <div class="code-box">
+        <pre>
     template &ltint dim&gt
     class Elasticity
     {
@@ -209,15 +249,1109 @@ namespace elas
             void output_results(const unsigned int load_step) const;
             void output_stress(const unsigned int load_step);
             void reaction(Tensor&lt1, dim&gt &reaction_stress, const types::boundary_id &boundary_id);
+        </pre>
+    </div>
 
+    <p><strong>Parallel and MPI setup</strong></p>
+    <p>
+        We define these objects in order to store all the relevant information that allow the program to operate efficiently across distributed memory systems, specifically:
+    </p>
+    <ul>
+        <li><code>mpi_communicator</code>: MPI communicator for all processes.</li>
+        <li><code>n_mpi_processes</code>: Number of active MPI processes.</li>
+        <li><code>this_mpi_process</code>: ID of the current process.</li>
+    </ul>
+
+    <div class="code-box">
+        <pre>
             // Parallel setup and print on screen
             MPI_Comm mpi_communicator;
             const unsigned int n_mpi_processes;
             const unsigned int this_mpi_process;
 
             parallel::distributed::Triangulation&ltdim&gt triangulation;
+        </pre>
+    </div>
 
+    <p><strong>Core finite element objects</strong></p>
+    <p>
+        These objects define the mathematical and computational framework for the simulation
+    </p>
+    <ul>
+        <li><code>triangulation</code>: Distributed mesh representation.</li>
+        <li><code>fe</code>: Finite element system for elasticity (displacement field).</li>
+        <li><code>dof_handler</code>: Manages degrees of freedom.</li>
+        <li><code>locally_owned_dofs</code>: Contains information of all the dofs of the mesh.</li>
+        <li><code>locally_relevant_dofs</code>: Stores only the relevant dofs for the current process.</li>
+        <li><code>constraints</code>: Handles boundary conditions, constraint equations and hanging nodes.</li>
+    </ul>
+    
+
+    <div class="code-box">
+        <pre>
             // Objects for elasticity
+            const FESystem&ltdim&gt fe;                         // FE System
+            DoFHandler&ltdim&gt dof_handler;                    // DoF Handler
+
+            IndexSet locally_owned_dofs;                        // IndexSet - Locally Owned
+            IndexSet locally_relevant_dofs;                     // IndexSet - Locally relevant 
+            AffineConstraints&ltdouble&gt constraints;              // Affine Constraint  
+
+            const QGauss&ltdim&gt quadrature_formula;           // Quadrature formula
+        </pre>
+    </div>
+    
+    <p><strong>System matrices and solution vectors:</strong></p>
+    <ul>
+        <li><code>system_matrix</code>: The global elasticity stiffness matrix.</li>
+        <li><code>system_rhs</code>: The right-hand side vector.</li>
+        <li><code>local_solution</code>: The solution vector split among MPI processes. Each process owns only part of the global solution corresponding to its locally owned degrees of freedom.</li>
+        <li><code>distributed_solution</code>: The complete distributed solution vector where all processes share a consistent view across the entire computational domain.</li>
+        <li><code>distributed_solution_old</code>: A backup of the previous load step's distributed solution, primarily used during adaptive mesh refinement or solution continuation between steps.</li>
+        <li><code>reaction_stress</code>: A tensor storing computed reaction stresses, typically used for evaluating boundary tractions and reaction forces at constrained surfaces.</li>
+    </ul>
+    
+
+    <div class="code-box">
+        <pre>
+            PETScWrappers::MPI::SparseMatrix system_matrix;     // Elastcitiy Matrix
+            PETScWrappers::MPI::Vector system_rhs;              // RHS 
+
+            PETScWrappers::MPI::Vector local_solution;          // MPI Split solution
+            PETScWrappers::MPI::Vector distributed_solution;    // Full Solution
+
+            PETScWrappers::MPI::Vector distributed_solution_old;   // This is for the refinement
+
+            Tensor&lt1, dim&gt reaction_stress;
+        </pre>
+    </div>
+
+    <p><strong>Material Properties and Simulation Parameters</strong></p>
+    <p>This section defines the physical and numerical setup for the elasticity simulation. The domain dimensions are specified by <code>L</code>, <code>H</code>, and <code>W</code>, which represent the length, height, and width, respectively. The initial subdivisions of the domain along the x, y, and z axes are controlled by the <code>nx</code>, <code>ny</code>, and <code>nz</code> variables.</p>
+    <p>The material properties are defined using <code>E</code> for Young's modulus and <code>nu</code> for Poisson's ratio. These values are essential for simulating the material's response to stress. The simulation load is managed with the <code>load_increment</code>, which dictates the amount of load applied at each step, and the <code>applied_load</code>, which tracks the cumulative load over time. The <code>num_load_steps</code> variable defines the total number of load increments to be applied during the simulation.</p>
+    <p>Two auxiliary tools are utilized in this setup: <code>pcout</code>, which handles parallel printing, allowing output to be displayed during parallel computations, and <code>computing_timer</code>, which measures and reports the computation time for each simulation step.</p>
+    <p>This configuration forms the foundation for the elasticity simulation, specifying the material properties, domain dimensions, and numerical controls required to run the simulation efficiently and accurately.</p>
+
+
+    <div class="code-box">
+        <pre>
+            // Domain dimensions
+            double L = 1;
+            double H = 0.05;
+            double W = 0.05;
+
+            const unsigned int nx = 25;
+            const unsigned int ny = 2;
+            const unsigned int nz = 2;
+            // Material properties
+            double E = 100;
+            double nu = 0.3;      
+
+            double load_increment = 0.01;     // Load increment applied
+            double applied_load = 0;          // Current applied_load += load_increment
+            double num_load_steps = 5;        // Total load increment  
+            
+            ConditionalOStream pcout;
+            TimerOutput computing_timer;       
+    }; // End of Elast class
+        </pre>
+    </div>
+
+    <h3>Constructor</h3>
+    <p>The constructor initializes all essential components required for the elasticity problem, including the core finite element objects and the MPI communicator-related objects. Each object associated with the communicator is initialized in the same order in which it is declared within the class.</p>
+        
+    <div class="code-box">
+        <pre>
+    // Constructor
+    template &ltint dim&gt
+    Elasticity&ltdim&gt::Elasticity()
+        : mpi_communicator(MPI_COMM_WORLD)
+        , n_mpi_processes(Utilities::MPI::n_mpi_processes(mpi_communicator))
+        , this_mpi_process(Utilities::MPI::this_mpi_process(mpi_communicator))
+        , triangulation (mpi_communicator)
+        , fe (FE_Q&ltdim&gt (1), dim)
+        , dof_handler (triangulation)
+        , quadrature_formula (fe.degree + 1)
+        , pcout (std::cout, this_mpi_process == 0)
+        , computing_timer (mpi_communicator, pcout,
+                            TimerOutput::never,
+                            TimerOutput::wall_times)
+        {}
+        </pre>
+    </div>
+
+    <h3>Evaluation of Elastic Constants:</h3>
+    <p>These two inline functions compute the Lamé constants, <code>lambda</code> and <code>mu</code>, based on the material's Young's modulus (<code>E</code>) and Poisson's ratio (<code>nu</code>). These constants are fundamental for solving elasticity problems in solid mechanics.</p>
+    
+    <ul>
+        <li><code>lambda(E, nu)</code>: 
+            <p>
+                $$\lambda = \frac{E \, \nu}{(1 + \nu) \, (1 - 2\nu)}$$
+            </p>
+        </li>
+
+        <li>
+            <code>mu(E, nu)</code>: 
+            <p>
+                $$ \mu = \frac{E}{(2 (1 + \nu))} $$
+            </p>
+        </li>
+    </ul>
+    
+    <div class="code-box">
+        <pre>
+    // Evaluation of the elastic constant
+    inline double lambda (const float E, const float nu)
+    {
+        return (E * nu) / ((1 + nu) * (1 - 2 * nu));
+    }
+
+    inline double mu (const float E, const float nu)
+    {
+        return E / (2 * (1 + nu));
+    }        
+        </pre>
+    </div>
+
+    <h3>Create mesh</h3>
+    <p>This function generates the computational mesh for the elasticity problem, providing flexibility for both 2D and 3D cases.
+        It starts by defining a coarse subdivision based on the given domain dimensions, which is stored in a standard C++ vector. 
+        The next step is to define the bottom-left point p1 and the top-right point p2 of the rectangular domain as <code>Point</code> objects. 
+        To ensure the solution is dimension-independent, a check is performed to determine the problem's dimensionality, and 2D or 3D points are created accordingly.
+        Finally, the mesh is created using the <code>GridGenerator::subdivided_hyper_rectangle</code> function.</p>
+    
+    <div class="code-box">
+        <pre>
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::create_mesh()
+    {
+        // Define the initial coarse subdivision
+        const std::vector&ltunsigned int&gt repetitions = {nx,ny,nz};
+        
+        // Create Mesh
+        Point&ltdim&gt p1, p2;
+        if constexpr (dim == 2)
+        {
+            p1 = Point&ltdim&gt(0, 0);
+            p2 = Point&ltdim&gt(L, H);
+        }
+        else if constexpr (dim == 3)
+        {
+            p1 = Point&ltdim&gt(0, 0, 0);
+            p2 = Point&ltdim&gt(L, H, W);
+        }
+
+        // create coarse mesh
+        GridGenerator::subdivided_hyper_rectangle (triangulation, repetitions, p1, p2); 
+        </pre>  
+    </div>
+    
+    <p><strong>Setting Boundary Face IDs:</strong></p>
+    <p>The code iterates over all active cells in the <code>triangulation</code> object, and for each cell, it iterates over its faces using <code>cell->face_iterators()</code>, it checks if the face is at the boundary with <code>face->at_boundary()</code> and lastly, if the face is at the boundary, the center of the face is calculated using <code>face->center()</code>.</p>
+    <p>Next, the code checks the location of the face's center to determine its position relative to the boundaries of the domain. It first checks if the face is located at the left, right, bottom, or top, assigning the IDs 0, 1, 2, and 3, respectively.</p>
+    <p>To remain dimension independent, the code uses <code>if constexpr (dim == 3)</code> to ensure that the check for the third coordinate is performed only in 3D cases. If the face is located at z = 0, it assigns a boundary ID of 4, and if the face is at z = W, it assigns a boundary ID of 5.</p>
+
+    <div class="code-box">
+        <pre>
+        // Set Face IDs
+        for (const auto &cell : triangulation.active_cell_iterators ())
+        {
+            for (const auto &face : cell-&gtface_iterators ())
+            {
+                if (face-&gtat_boundary ())
+                {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center(0) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (0);
+
+                    else if (std::fabs (center(0) - L) &lt 1e-12)
+                        face-&gtset_boundary_id (1);
+
+                    else if (std::fabs (center(1) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (2);
+
+                    else if (std::fabs (center(1) - H) &lt 1e-12)
+                        face-&gtset_boundary_id (3);
+
+                    // Check if we are in 3D before accessing center(2)
+                    if constexpr (dim == 3)
+                    {
+                        if (std::fabs(center(2) - 0) &lt 1e-12)
+                            face-&gtset_boundary_id(4);
+                        else if (std::fabs(center(2) - W) &lt 1e-12)
+                            face-&gtset_boundary_id(5);
+                    }
+                }
+            }
+        }
+        </pre>
+    </div>
+    
+    <p><strong>Initialize DoF Handler and Solution Setup:</strong></p>
+    <p>This section of the code initializes the degrees of freedom (DoFs) and sets up the solution for the elasticity problem in a parallel execution environment. The first operation performed is the distribution of DoFs across the mesh using <code>dof_handler.distribute_dofs(fe)</code>. This method ensures that the degrees of freedom are allocated according to the finite element method configuration, which is crucial for efficient parallel execution, where each process is responsible for a part of the problem.</p>
+    <p>Next, the code retrieves the locally owned degrees of freedom using <code>locally_owned_dofs = dof_handler.locally_owned_dofs()</code>. This step ensures that each MPI process knows which part of the problem it is responsible for. Additionally, it extracts the locally relevant DoFs, which may include DoFs owned by neighboring processes. This is done using <code>DoFTools::extract_locally_relevant_dofs(dof_handler)</code>, enabling the necessary inter-process communication for solving the problem.</p>
+    <p>To maintain continuity between load steps, especially when using adaptive mesh refinement techniques, the solution vector from the previous load step is reinitialized. The vector is called <code>distributed_solution_old</code>, and it is reinitialized using <code>distributed_solution_old.reinit(locally_owned_dofs, mpi_communicator)</code>. This ensures that the previous solution is preserved for refinement purposes.</p>
+    <p>The code also prints some key information regarding the triangulation and the distribution of the mesh. Using the <code>pcout</code> stream, the number of global levels in the triangulation is displayed with the command. This gives an overview of the mesh refinement hierarchy. Similarly, it prints the number of locally owned cells, which informs the user about the number of cells assigned to the current MPI process. The total number of cells across the global domain is also printed.</p>
+    
+    <div class="code-box">
+        <pre>
+            // Initialize dof handler and extact Owned/Relevant DoFs
+        dof_handler.distribute_dofs (fe);
+        
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        // Initialize the old solution for refinement purposes
+        distributed_solution_old.reinit (locally_owned_dofs, mpi_communicator);
+        
+        pcout &lt&lt "No. of levels in triangulation: " 
+              &lt&lt triangulation.n_global_levels () &lt&lt std::endl;
+        
+        pcout &lt&lt "   Number of locally owned cells on the process:       " 
+              &lt&lt triangulation.n_locally_owned_active_cells () &lt&lt std::endl;
+        
+        pcout &lt&lt "Number of global cells:" &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl;
+    
+        pcout &lt&lt "  Total Number of globally active cells:       "  
+              &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+              &lt&lt "   Number of degrees of freedom for elasticity: " 
+              &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+    }
+        </pre>
+    </div>
+
+    <h3>Mesh Refinement</h3>
+    <p>This function prepares the computational mesh for adaptive refinement based on an error estimation from the current solution.
+       It is typically called at the end of each load step to improve the solution's accuracy by refining the mesh where needed.
+       The first step in the mesh refinement process is the creation of a vector, <code>Vector&lt;float&gt; estimated_error_per_cell</code>,
+       which stores the estimated error for each locally owned active cell.
+       The vector is initialized to the number of cells owned by the current MPI process, ensuring that each process has its own set of error estimates.</p>
+    
+    <p>The next part of the process involves the use of the <code>KellyErrorEstimator&lt;dim&gt;::estimate</code> function.
+        This function estimates the error for each cell in the mesh using the Kelly error estimator,
+        which is a standard technique for error estimation in finite element methods. 
+        The estimator requires several inputs: the <code>dof_handler</code> (which contains the degrees of freedom), 
+        a quadrature rule <code>QGauss&lt;dim-1&gt;(fe.degree + 1)</code> that specifies the degree of quadrature for integration, 
+        a map of boundary IDs, a function representing boundary conditions, and the current solution <code>local_solution</code>.
+        The estimated error for each cell is then stored in the <code>estimated_error_per_cell</code> vector.</p>
+
+    <p>Finally, the code initializes a <code>SolutionTransfer</code> object.
+        The <code>parallel::distributed::SolutionTransfer&lt;dim, PETScWrappers::MPI::Vector&gt;</code> is responsible for transferring
+        the solution from the old mesh to the refined mesh. 
+        This ensures that the solution is correctly mapped after the adaptive refinement, especially in a parallel execution environment.
+        The <code>SolutionTransfer</code> object, named <code>soltrans</code>, is initialized with the <code>dof_handler</code> 
+        to enable the correct transfer of solution data.</p>
+
+
+    <div class="code-box">
+        <pre>
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::refine_mesh(const unsigned int load_step)
+    {
+        Vector&ltfloat&gt estimated_error_per_cell (triangulation.n_locally_owned_active_cells ());
+        KellyErrorEstimator&ltdim&gt::estimate (dof_handler,
+                                            QGauss&ltdim-1&gt (fe.degree + 1),
+                                            std::map&lttypes::boundary_id, const Function&ltdim&gt *&gt(),
+                                            local_solution, estimated_error_per_cell);
+
+        // Initialize SolutionTransfer object
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt
+            soltrans (dof_handler);
+        </pre>
+    </div>
+
+    <p><strong>Mesh Refinement and Solution Transfer:</strong></p>
+    <p>This section of the code performs adaptive mesh refinement based on error estimation, followed by transferring the solution across the updated mesh.</p>
+    <p>The <code>parallel::distributed::GridRefinement::refine_and_coarsen_fixed_fraction</code> function refines the top 30% of cells with the highest error and coarsens the bottom 1% to improve accuracy.</p>
+    <p>If the mesh is refined to level 4 or higher, further refinement is prevented at level 3 to avoid unnecessary computational overhead. This is controlled by checking the number of global levels with <code>if (triangulation.n_global_levels() >= 4)</code>.</p>
+    <p>The triangulation is then prepared for coarsening and refinement using <code>triangulation.prepare_coarsening_and_refinement()</code>, and the <code>SolutionTransfer</code> object is initialized with <code>soltrans.prepare_for_coarsening_and_refinement(local_solution)</code> to ensure the current solution is correctly mapped onto the refined mesh.</p>
+    <p>After the mesh is refined, the degrees of freedom are redistributed using <code>dof_handler.distribute_dofs(fe)</code>, ensuring the solution is consistent with the new mesh configuration.</p>
+
+    <div class="code-box">
+        <pre>
+        parallel::distributed::GridRefinement::refine_and_coarsen_fixed_fraction (
+            triangulation, estimated_error_per_cell, 0.30, 0.01);
+
+        if (triangulation.n_global_levels () &gt= 4)
+        {
+            for (const auto &cell : triangulation.active_cell_iterators_on_level (3))
+            if (cell-&gtis_locally_owned ())
+                cell-&gtclear_refine_flag ();
+        }
+        
+        // Prepare the triangulation
+        triangulation.prepare_coarsening_and_refinement ();
+
+        // Prepare the SolutionTransfer object for coarsening and refinement
+        // and give the solution vector that we intend to interpolate later,
+        soltrans.prepare_for_coarsening_and_refinement (local_solution);
+
+        // Do the refinement
+        triangulation.execute_coarsening_and_refinement ();
+        
+        // redistribute dofs,
+        dof_handler.distribute_dofs (fe);
+        </pre>
+    </div>
+
+    <p><strong>Reconstruction of Degrees of Freedom and Solution Interpolation:</strong></p>
+    <p>This part of the code manages the redistribution of degrees of freedom (DoFs) and interpolates the old solution onto the newly refined mesh. Constraints are then reapplied to ensure the solution remains valid and consistent with the updated mesh structure.</p>
+    <p>The <code>locally_owned_dofs = dof_handler.locally_owned_dofs()</code> updates the degrees of freedom owned by the current MPI process after mesh refinement. Similarly, <code>locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs(dof_handler)</code> extracts the locally relevant degrees of freedom, including those needed for MPI communication.</p>
+    <p>The <code>distributed_solution_old.reinit(locally_owned_dofs, mpi_communicator)</code> reinitializes the distributed solution vector to align with the new DoF layout, followed by interpolation of the old solution onto the refined mesh with <code>soltrans.interpolate(distributed_solution_old)</code>.</p>
+    <p>Next, the <code>setup_constraints(load_step)</code> function re-applies the boundary conditions and other constraints, and <code>constraints.distribute(distributed_solution_old)</code> ensures the constraints are applied to the interpolated solution. Finally, the new solution is copied into <code>local_solution</code> to maintain continuity in the simulation.</p>
+
+    <div class="code-box">
+        <pre>
+        // Recreate locally_owned_dofs and locally_relevant_dofs index sets
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+
+        distributed_solution_old.reinit (locally_owned_dofs, mpi_communicator);
+        soltrans.interpolate (distributed_solution_old);
+
+        // Apply constraints on the interpolated solution
+        setup_constraints(load_step);
+        constraints.distribute (distributed_solution_old);
+
+        // Copy distributed_solution_old to local_solution
+        local_solution.reinit(locally_owned_dofs,
+                                locally_relevant_dofs,
+                                mpi_communicator);
+        local_solution = distributed_solution_old;
+    }
+        </pre>
+    </div>
+
+    <h3>Setup Constraints</h3>
+
+    <p>This function configures the boundary constraints needed to enforce boundary conditions on the finite element solution.
+    It starts by clearing and reinitializing the constraint system based on the currently relevant degrees of freedom.
+    Hanging node constraints, which ensure continuity across mesh refinements, are automatically handled through <code>DoFTools::make_hanging_node_constraints</code>.</p>
+    <p>Specific displacement conditions are applied next. 
+    Displacement along the x-axis is extracted using <code>u_x</code> and its corresponding mask.
+    The displacement values on the left and right boundaries are computed based on the current load step, 
+    introducing symmetrical loading: negative on the left side and positive on the right side.</p>
+    <p>Similarly, displacement along the y-axis is extracted using <code>u_y</code>, with a fixed (zero) displacement applied
+     on the relevant boundary to prevent vertical motion.</p>
+    <p>If the simulation is in three dimensions, displacement along the z-axis (<code>u_z</code>) is also constrained to zero
+    on a specified boundary to avoid out-of-plane motion. 
+    Finally, the constraint system is closed to finalize all imposed conditions before solving the system.</p>
+    
+    <div class="code-box">
+        <pre>
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_constraints (const unsigned int load_step)
+    {
+        constraints.clear ();
+        constraints.reinit (locally_relevant_dofs);
+
+        DoFTools::make_hanging_node_constraints (dof_handler, constraints);
+
+        const FEValuesExtractors::Scalar u_x (0);
+        const FEValuesExtractors::Scalar u_y (1);
+
+        const ComponentMask u_x_mask = fe.component_mask (u_x);
+        const ComponentMask u_y_mask = fe.component_mask (u_y);
+
+        applied_load = load_increment*load_step;
+        const double u_x_values_right = 0.5*applied_load;
+        const double u_x_values_left = -0.5*applied_load;
+
+        const double u_fix = 0.0;
+
+        VectorTools::interpolate_boundary_values (dof_handler, 0,
+                                Functions::ConstantFunction&ltdim&gt (u_x_values_left, dim),
+                                constraints, 
+                                u_x_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler, 1,
+                                Functions::ConstantFunction&ltdim&gt (u_x_values_right, dim), 
+                                constraints,
+                                u_x_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler, 2,
+                                Functions::ConstantFunction&ltdim&gt (u_fix, dim), 
+                                constraints,
+                                u_y_mask);
+
+        if constexpr (dim == 3)
+        {
+            const FEValuesExtractors::Scalar u_z (2);
+            const ComponentMask u_z_mask = fe.component_mask (u_z);
+
+            VectorTools::interpolate_boundary_values (dof_handler, 4,
+                                Functions::ConstantFunction&ltdim&gt (u_fix, dim),
+                                constraints,
+                                u_z_mask);
+        }
+
+        constraints.close ();
+    }
+        </pre>
+    </div>
+
+    <h3>System setup</h3>
+
+    <p>This function initializes all essential structures required for solving the
+        finite element system at the current load step. 
+        It starts by creating and extracting the degrees of freedom that are locally
+        owned and those that are locally relevant for communication across MPI processes.
+        Solution vectors such as <code>local_solution</code>, <code>system_rhs</code>, 
+        and <code>distributed_solution</code> are reinitialized accordingly to match
+        the new DoF layout.</p>
+    <p>Boundary conditions and hanging node constraints are enforced through a call
+        to <code>setup_constraints(load_step)</code>. 
+        A dynamic sparsity pattern is then generated, 
+        defining where non-zero entries are expected in the system matrix.
+        This sparsity pattern is distributed across MPI processes to ensure 
+        efficient parallel assembly.</p>
+    <p>Finally, <code>system_matrix</code> is reinitialized
+        based on the new sparsity pattern, completing the setup required before
+        assembling and solving the elasticity problem for the given load step.</p>
+    
+    <div class="code-box">
+        <pre>
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup(const unsigned int load_step)
+    {
+        TimerOutput::Scope ts(computing_timer, "setup_system");
+        
+        // Initialize the dofs contained locally as well as those of the near cells
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        local_solution.reinit (locally_owned_dofs,
+                                locally_relevant_dofs,
+                                mpi_communicator);
+
+        // Initialize the contraints objects for BC and Hanging Nodes during refinement
+        system_rhs.reinit (locally_owned_dofs, mpi_communicator);
+        distributed_solution.reinit (locally_owned_dofs, mpi_communicator);
+        
+        // Initialize hanging nodes and constrains
+        setup_constraints (load_step);  
+        
+        // Sparsity pattern initialization (where matrix has nonzero entries)
+        DynamicSparsityPattern dsp(locally_relevant_dofs);
+        DoFTools::make_sparsity_pattern (dof_handler,
+                                            dsp, 
+                                            constraints, 
+                                            false);
+        SparsityTools::distribute_sparsity_pattern (dsp,
+                                                    dof_handler.locally_owned_dofs (),
+                                                    mpi_communicator,
+                                                    locally_relevant_dofs);
+        
+        // Elasticity Matrix
+        system_matrix.reinit (locally_owned_dofs,
+                                        locally_owned_dofs, 
+                                        dsp, 
+                                        mpi_communicator);
+    }
+        </pre>
+    </div>
+
+    <h3>Assembly</h3>
+    <p>This function performs the assembly process of the system matrix and rhs.
+        First it clears the previous <code>system_rhs</code> and <code>system_matrix</code>.
+        It then initializes the <code>FEValues</code> object, 
+        which manages shape function evaluations, gradients, quadrature points, 
+        and Jacobian-weighted measures for each cell during integration.</p>
+    <p>The number of degrees of freedom per cell and the number of
+        quadrature points are determined. 
+        Local objects, including the element <code>cell_matrix</code> and <code>cell_rhs</code>, 
+        are created and sized appropriately. Additionally, a vector
+        <code>local_dof_indices</code> is initialized to map local degrees of freedom
+        to the global system, setting the stage for the element-wise assembly process.</p>
+
+
+    <div class="code-box">
+        <pre>
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::assemble()
+    {
+        TimerOutput::Scope ts (computing_timer, "assembly");
+
+        // Clean the current matrices 
+        system_rhs = 0;
+        system_matrix = 0;
+
+        // Initialize the FEValues Objects
+        FEValues&ltdim&gt fe_values (fe, quadrature_formula,
+                                update_values | update_gradients |
+                                update_quadrature_points | update_JxW_values);
+
+        // Number of DoFs and Gauss points per cell
+        const unsigned int dofs_per_cell = fe.n_dofs_per_cell ();
+        
+        // Local Matrices and Vector
+        FullMatrix&ltdouble&gt cell_matrix (dofs_per_cell, dofs_per_cell);
+        Vector&ltdouble&gt cell_rhs (dofs_per_cell);
+
+        // Create vector to store the local dof indices
+        std::vector&lttypes::global_dof_index&gt local_dof_indices (dofs_per_cell);
+        </pre>
+    </div>
+
+    <p>The function loops over all locally owned active cells. 
+        For each cell, the local stiffness matrix <code>cell_matrix</code>
+         and local right-hand side vector <code>cell_rhs</code> are reset to zero.
+         The finite element information is updated for the current cell using 
+         <code>fe_values.reinit(cell)</code>, preparing the shape functions and 
+         their gradients for integration.</p>
+    <p>At each Gauss quadrature point, the code computes contributions to the local 
+        matrix by assembling the linear elasticity terms based on Lame parameters 
+        <code>lambda</code> and <code>mu</code>. It also calculates contributions 
+        to the local right-hand side vector, though in this case the body force is zero. </p>
+        
+     <p>To apply boundary forces, you need to loop over the faces of the cells and check if each face belongs to a boundary.
+        If the face is part of the boundary, you can then add the corresponding contribution
+        to the system. This requires to setup and use a <code>FEFaceValues</code> object in addition 
+        to the <code>FEValues</code> already in place, which evaluates
+        the shape functions and gradients at the domain boundaries. 
+        By using <code>FEFaceValues</code>, you can compute the necessary values 
+        (such as shape functions, gradients, and normal vectors) on the boundary faces, 
+        allowing you to correctly apply the boundary forces to the right-hand side vector (system_rhs) of the linear system.
+    <p> Afterward, the local degrees of freedom are mapped to their global indices, and the local contributions are inserted into the global system matrix and right-hand side using <code>constraints.distribute_local_to_global</code>, which also enforces boundary and hanging node conditions.</p>
+    <p> Finally, after all cells have been processed, the system matrix and right-hand side vector are compressed to finalize assembly across all MPI processes, ensuring a consistent global system ready for solving.</p>
+
+    <div class="code-box">
+        <pre>
+        // loop over the cells
+        for (const auto &cell : dof_handler.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                // Reset the local matrix/rhs of the cell
+                cell_matrix = 0;
+                cell_rhs = 0;
+
+                fe_values.reinit (cell);
+            
+                // loop over the gauss point of the cell
+                for (const unsigned int q_point : fe_values.quadrature_point_indices ())
+                {
+                    for (const unsigned int i : fe_values.dof_indices ())
+                    {
+                        const unsigned int component_i = fe.system_to_component_index (i).first;
+
+                        for (const unsigned int j : fe_values.dof_indices ())
+                        {
+                            const unsigned int component_j = fe.system_to_component_index (j).first;
+                            cell_matrix (i, j) +=  ((fe_values.shape_grad (i, q_point)[component_i] 
+                                                    * lambda (E, nu) *
+                                                    fe_values.shape_grad (j, q_point)[component_j])
+                                                    +
+                                                    (fe_values.shape_grad (i, q_point)[component_j] 
+                                                    * mu (E, nu) *
+                                                    fe_values.shape_grad (j, q_point)[component_i])
+                                                    +
+                                                    ((component_i == component_j) ?
+                                                    (fe_values.shape_grad (i, q_point) *  mu (E, nu) 
+                                                    * fe_values.shape_grad (j, q_point)) 
+                                                                                    : 0)                              
+                                                    ) * fe_values.JxW (q_point); //
+                        }
+                        
+                        // Cell rhs set to zero for the current example
+                        // Modify this entry to account for body forces
+                        cell_rhs (i) += fe_values.shape_value (i, q_point) * 0
+                                        * fe_values.JxW (q_point);
+
+                                        
+                        // To apply boundary forces you need to loop over the exterior boundaries
+                        // to populate the corresponding entries of the rhs
+                    
+                    }
+                }
+                cell-&gtget_dof_indices (local_dof_indices);
+                constraints.distribute_local_to_global (cell_matrix,
+                                                        cell_rhs, 
+                                                        local_dof_indices, 
+                                                        system_matrix,
+                                                        system_rhs);
+            }
+        }
+        system_matrix.compress (VectorOperation::add);
+        system_rhs.compress (VectorOperation::add);
+    }
+        </pre>
+    </div>
+
+    <h3>Solve system</h3>
+
+    <p>The function begins by measuring the computation time for solving the linear system.
+        A Conjugate Gradient (CG) solver is initialized with a maximum iteration count and
+        a stopping tolerance proportional to the norm of the right-hand side vector. 
+        The system is solved using the CG method with a block Jacobi preconditioner built 
+        from the system matrix to accelerate convergence.</p>
+    <p>After solving, the number of iterations taken to converge is printed using the 
+        parallel output stream. Finally, the solution vector is adjusted by 
+        applying the constraints, ensuring the solution respects boundary conditions 
+        and hanging node continuity requirements.</p>
+
+    <div class="code-box">
+        <pre>
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::solve_linear_problem()
+    {
+        TimerOutput::Scope ts (computing_timer, "solve_linear_system");
+        // CG
+        SolverControl solver_control (100000, 1e-12* system_rhs.l2_norm());
+        SolverCG&ltPETScWrappers::MPI::Vector&gt solver (solver_control);
+
+        PETScWrappers::PreconditionBlockJacobi preconditioner(system_matrix);
+        
+        solver.solve (system_matrix,
+                        distributed_solution,
+                        system_rhs,
+                        preconditioner);
+    
+        pcout &lt&lt "   Solved in " &lt&lt solver_control.last_step () &lt&lt " iterations." &lt&lt std::endl;
+    
+        constraints.distribute (distributed_solution);
+    }
+        </pre>
+    </div>
+
+    <h3>Output results</h3>
+
+    <p>This function handles writing the displacement solution 
+        and subdomain information after each load step. 
+        Displacement components are labeled appropriately and interpreted as 
+        vector fields for visualization. 
+        Each processor’s subdomain is also recorded to distinguish parallel ownership of cells.</p>
+    <p>The data is organized into patches and written into VTU format files, 
+        with a PVTU master record created for parallel output. 
+        On the root MPI process, a PVD file is updated to index all the time steps, 
+        enabling easy loading of the full simulation history in visualization tools like ParaView.</p>
+
+    <div class="code-box">
+        <pre>
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::output_results (const unsigned int load_step) const
+    {
+        std::vector&ltstd::string&gt displacement_names (dim, "displacement");
+        std::vector&ltDataComponentInterpretation::DataComponentInterpretation&gt 
+            displacement_component_interpretation (dim, 
+                        DataComponentInterpretation::component_is_part_of_vector);
+
+        DataOut&ltdim&gt data_out_phasefield;
+        data_out_phasefield.add_data_vector (dof_handler,
+                                            local_solution,
+                                            displacement_names,
+                                            displacement_component_interpretation);
+
+        Vector&ltdouble&gt subdomain (triangulation.n_active_cells ());
+        for (unsigned int i = 0; i &lt subdomain.size (); ++i)
+        {
+            subdomain (i) = triangulation.locally_owned_subdomain ();
+        }
+
+        data_out_phasefield.add_data_vector (subdomain, "subdomain");
+        data_out_phasefield.build_patches ();
+        const std::string pvtu_filename = data_out_phasefield.write_vtu_with_pvtu_record ("./", 
+                                                                                    "solution",
+                                                                    load_step, mpi_communicator, 
+                                                                                                2, 
+                                                                                                0);
+
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.push_back(std::pair&ltdouble, std::string&gt(load_step, pvtu_filename));
+            std::ofstream pvd_output("./solution_u.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+        </pre>
+    </div>
+
+    <h3>Output stresses</h3>
+
+    <p>This function calculates the stress tensor at the quadrature points
+        by post-processing the displacement solution. 
+        The stress components are averaged per cell and stored in vectors.
+        Separate stress components such as <code>s_xx</code>, <code>s_xy</code>, and <code>s_yy</code>
+        (and <code>s_zz</code>, <code>s_xz</code>, <code>s_yz</code> in 3D) 
+        are created and attached to the mesh for visualization.</p>
+    <p>Each stress component is exported into VTU files using <code>DataOut</code>.
+        A parallel VTU (PVTU) record is generated for distributed visualization, 
+        and a PVD file is updated on the root process to maintain the simulation timeline.</p>
+
+    <div class="code-box">
+        <pre>
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::output_stress(const unsigned int load_step)
+    {
+        // Vettori per cella in Vector&ltfloat&gt
+        Vector&ltfloat&gt s_xx(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_xy(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_yy(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_zz(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_xz(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_yz(triangulation.n_active_cells());
+    
+        FEValues&ltdim&gt fe_values(fe, quadrature_formula,
+                                update_gradients | update_JxW_values);
+    
+        const unsigned int n_q_points = quadrature_formula.size();
+        const FEValuesExtractors::Vector displacements(0);
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_tensor(n_q_points);
+    
+        for (const auto &cell : dof_handler.active_cell_iterators())
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                fe_values.reinit(cell);
+                fe_values[displacements].get_function_symmetric_gradients(local_solution,
+                                                                            strain_tensor);
+    
+                double c_s_xx = 0, c_s_xy = 0, c_s_yy = 0;
+                double c_s_zz = 0, c_s_xz = 0, c_s_yz = 0;
+    
+                for (unsigned int q = 0; q &lt n_q_points; ++q)
+                {
+                    const auto &eps_u = strain_tensor[q];
+                    const double tr = trace(eps_u);
+                    const auto stress = 2.0 * mu(E, nu) * eps_u + lambda(E, nu)
+                                        * tr * unit_symmetric_tensor&ltdim&gt();
+    
+                    c_s_xx += stress[0][0];
+                    c_s_xy += stress[0][1];
+                    c_s_yy += stress[1][1];
+    
+                    if constexpr (dim == 3)
+                    {
+                        c_s_zz += stress[2][2];
+                        c_s_xz += stress[0][2];
+                        c_s_yz += stress[1][2];
+                    }
+                }
+    
+                const unsigned int cell_index = cell-&gtactive_cell_index();
+                s_xx[cell_index] = c_s_xx / n_q_points;
+                s_xy[cell_index] = c_s_xy / n_q_points;
+                s_yy[cell_index] = c_s_yy / n_q_points;
+    
+                if constexpr (dim == 3)
+                {
+                    s_zz[cell_index] = c_s_zz / n_q_points;
+                    s_xz[cell_index] = c_s_xz / n_q_points;
+                    s_yz[cell_index] = c_s_yz / n_q_points;
+                }
+            }
+        }
+    
+        DataOut&ltdim&gt data_out;
+        data_out.attach_triangulation(triangulation);
+    
+        data_out.add_data_vector(s_xx, "s_xx", DataOut&ltdim&gt::type_cell_data);
+        data_out.add_data_vector(s_xy, "s_xy", DataOut&ltdim&gt::type_cell_data);
+        data_out.add_data_vector(s_yy, "s_yy", DataOut&ltdim&gt::type_cell_data);
+    
+        if constexpr (dim == 3)
+        {
+            data_out.add_data_vector(s_zz, "s_zz", DataOut&ltdim&gt::type_cell_data);
+            data_out.add_data_vector(s_xz, "s_xz", DataOut&ltdim&gt::type_cell_data);
+            data_out.add_data_vector(s_yz, "s_yz", DataOut&ltdim&gt::type_cell_data);
+        }
+    
+        data_out.build_patches();
+    
+        const std::string pvtu_filename = data_out.write_vtu_with_pvtu_record(
+            "./", "stresses", load_step, mpi_communicator, 4);
+    
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.emplace_back(load_step, pvtu_filename);
+    
+            std::ofstream pvd_output("./stresses.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+        </pre>
+    </div>
+    
+    <h3>Compute reactions</h3>
+    <p>This function computes the total reaction force on a specified boundary by integrating the stress tensor over the boundary faces. The stress is derived from the strain, which is computed from the displacement solution at quadrature points on the faces.</p>
+    <p>Only faces matching the given <code>boundary_id</code> are considered. Local contributions are accumulated per MPI rank and summed globally. The resulting reaction vector components are printed using parallel output utilities.</p>
+
+
+    <div class="code-box">
+        <pre>
+    // Reaction
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::reaction(Tensor&lt1, dim&gt &reaction_stress,
+                                        const types::boundary_id &boundary_id)
+    {
+        // Face quadrature formula
+        QGauss&ltdim - 1&gt face_quadrature_formula(5);
+
+        // Set up FE face values for vector-valued and scalar-valued solution
+        FEFaceValues&ltdim&gt fe_face_values(fe, face_quadrature_formula,
+                                        UpdateFlags(update_values |
+                                                    update_gradients |
+                                                    update_quadrature_points |
+                                                    update_normal_vectors |
+                                                    update_JxW_values));
+
+        const unsigned int n_face_q_points = face_quadrature_formula.size();
+
+        // Extract displacements for gradient calculation
+        const FEValuesExtractors::Vector displacements(0);
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_tensor(n_face_q_points);
+
+        // Parallel DoFHandler iterator
+        typename DoFHandler&ltdim&gt::active_cell_iterator cell = dof_handler.begin_active(),
+                                                        endc = dof_handler.end();
+
+        Tensor&lt1, dim&gt reaction_mpi;
+
+        // Loop over all cells in the triangulation
+        for (; cell != endc; ++cell)
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                // Loop over all faces of the current cell
+                for (unsigned int face = 0; face &lt GeometryInfo&ltdim&gt::faces_per_cell; ++face)
+                {
+                    // Check if the current face belongs to the specified boundary
+                    if (cell-&gtface(face)-&gtboundary_id() == boundary_id)
+                    {
+                        // Reinitialize FE face values for the current face
+                        fe_face_values.reinit(cell, face);
+                        fe_face_values[displacements].get_function_symmetric_gradients(local_solution, strain_tensor);
+
+                        // Loop over quadrature points on the face
+                        for (unsigned int q_point = 0; q_point &lt n_face_q_points; ++q_point)
+                        {
+                            const auto &eps_u = strain_tensor[q_point];
+                            const Tensor&lt1, dim&gt &N = fe_face_values.normal_vector(q_point);
+                            const double JxW_f = fe_face_values.JxW(q_point);
+
+                            // Compute the stress tensor using the strain
+                            const double tr = trace(eps_u);
+                            const auto stress = 2.0 * mu(E, nu) * eps_u + lambda(E, nu)
+                                                    * tr * unit_symmetric_tensor&ltdim&gt();
+
+                            // Accumulate the contribution to the reaction stress
+                            reaction_mpi += stress * N * JxW_f;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Sum the reaction stresses from all MPI ranks and print it
+        reaction_stress = Utilities::MPI::sum(reaction_mpi, mpi_communicator);
+        for (unsigned int i = 0; i &lt dim; ++i)
+        {
+            pcout &lt&lt "   R_" &lt&lt (char)('x' + i) &lt&lt ": " &lt&lt reaction_stress[i] &lt&lt std::endl;
+        }
+    }
+        </pre>
+    </div>
+
+    <h3>Run</h3>
+    <p>This is the main driver function. It starts by creating the mesh and then iterates over each load step.
+        For each step, it sets up the system, assembles the linear system, solves it,
+        updates the solution, refines the mesh, and outputs displacement, stress, 
+        and reaction results. Performance information is printed at each load step, 
+        and the overall runtime is recorded at the end.</p>
+
+    <div class="code-box">
+        <pre>
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::run()
+    {
+        Timer timer;
+        timer.start ();
+        pcout &lt&lt "Running on " &lt&lt Utilities::MPI::n_mpi_processes (mpi_communicator) 
+                &lt&lt " MPI rank(s)..." &lt&lt std::endl;
+
+        create_mesh();
+
+        // Loop over load steps
+        for (unsigned int load_step = 0; load_step &lt= num_load_steps; load_step++)
+        {
+            pcout &lt&lt " --- Load increment number : " &lt&lt load_step &lt&lt std::endl;
+
+            setup (load_step);
+            assemble ();
+            solve_linear_problem ();
+            
+            // Update ghost values after the solution
+            local_solution = distributed_solution;
+            local_solution.update_ghost_values();
+            
+            // Prepare for refinement
+            distributed_solution_old = local_solution;
+            
+            // Refine
+            refine_mesh(load_step);
+
+            pcout &lt&lt "  Total New Number of globally active cells:       "  
+                    &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+                    &lt&lt "   New Number of degrees of freedom for elasticity: " 
+                    &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+            
+            // Save results
+            output_results (load_step);
+            output_stress (load_step);
+            reaction(reaction_stress, 1);
+
+            // Print the table of cpmputing times
+            computing_timer.print_summary ();
+            computing_timer.reset ();
+            pcout &lt&lt std::endl;
+        }
+
+        timer.stop ();
+        pcout &lt&lt "Total run time: " &lt&lt timer.wall_time () &lt&lt " seconds." &lt&lt std::endl;
+    }
+} // End of namespace Elasticity     
+        </pre>
+    </div>
+
+    <h3>Main</h3>
+    <p>The entry point of the program. It initializes the MPI environment and creates 
+        an instance of the <code>Elasticity&ltdim&gt</code> class (with <code>&ltdim&gt</code> to be set equal to 2 for the 2D problem or 3 for 3D one). 
+        It then calls the <code>run()</code> method to execute the simulation. 
+        Exceptions are caught and printed clearly to standard error to ensure that any 
+        runtime issues are reported properly before the program aborts.</p>
+
+    <div class="code-box">
+        <pre>
+int main (int argc, char *argv[])
+{
+    try
+    {
+        using namespace dealii;
+        using namespace elas;
+
+        Utilities::MPI::MPI_InitFinalize mpi_initialization (argc, argv, 1);
+
+        Elasticity&lt2&gt elasticity;  // For the 2D problem
+        // Elasticity&lt3&gt elasticity;  // For the 3D problem
+        elasticity.run ();
+    }
+    catch (std::exception &exc)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Exception on processing: " &lt&lt std::endl &lt&lt exc.what ()
+        &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Unknown exception!" &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+
+</section>
+
+<section id="section4">
+    <h2>Results</h2>
+    <p>Sezione dei risultati in cui andare a mettere:
+        <ul>
+            <li>Plot degli spostamenti ad ogni passo temporale</li>
+            <li>Plot dei dof per ciclo di raffittimento</li>
+            <li>Plot delle tensioni</li>
+            <li>Grafico carico vs spostamento</li>
+        </ul>
+
+    </p>
+</section>
+
+<section id="section5"></section>
+    <h2>Complete code</h2>
+
+    <div class="code-box">
+        <pre>
+#include &ltdeal.II/base/quadrature_lib.h&gt
+#include &ltdeal.II/base/function.h&gt
+#include &ltdeal.II/base/timer.h&gt
+#include &ltdeal.II/base/utilities.h&gt
+#include &ltdeal.II/base/conditional_ostream.h&gt
+#include &ltdeal.II/base/index_set.h&gt
+#include &ltdeal.II/base/quadrature_point_data.h&gt
+#include &ltdeal.II/base/tensor_function.h&gt
+#include &ltdeal.II/grid/grid_generator.h&gt
+#include &ltdeal.II/grid/tria_accessor.h&gt
+#include &ltdeal.II/grid/grid_refinement.h&gt
+#include &ltdeal.II/dofs/dof_handler.h&gt
+#include &ltdeal.II/dofs/dof_tools.h&gt
+#include &ltdeal.II/dofs/dof_accessor.h&gt
+#include &ltdeal.II/lac/generic_linear_algebra.h&gt
+#include &ltdeal.II/lac/vector.h&gt
+#include &ltdeal.II/lac/full_matrix.h&gt
+#include &ltdeal.II/lac/precondition.h&gt
+#include &ltdeal.II/lac/petsc_precondition.h&gt
+#include &ltdeal.II/lac/solver_cg.h&gt
+#include &ltdeal.II/lac/affine_constraints.h&gt
+#include &ltdeal.II/lac/sparsity_tools.h&gt
+#include &ltdeal.II/lac/dynamic_sparsity_pattern.h&gt
+#include &ltdeal.II/fe/fe_values.h&gt
+#include &ltdeal.II/fe/fe_system.h&gt
+#include &ltdeal.II/fe/fe_q.h&gt
+#include &ltdeal.II/numerics/vector_tools.h&gt
+#include &ltdeal.II/numerics/matrix_tools.h&gt
+#include &ltdeal.II/numerics/data_out.h&gt
+#include &ltdeal.II/numerics/error_estimator.h&gt
+#include &ltdeal.II/distributed/tria.h&gt
+#include &ltdeal.II/distributed/grid_refinement.h&gt
+#include &ltdeal.II/distributed/solution_transfer.h&gt
+#include &ltfstream&gt
+#include &ltiostream&gt
+#include &ltrandom&gt
+
+namespace elas
+{
+    using namespace dealii;
+
+    template &ltint dim&gt
+    class Elasticity
+    {
+        public:
+            Elasticity();
+            void run();
+
+        private:
+            // Mesh generation and refinement
+            void create_mesh();
+            void refine_mesh(const unsigned int load_step);
+
+            // Elasticity problem functions
+            void setup_constraints (const unsigned int load_step); 
+            void setup(const unsigned int load_step);
+            void assemble();
+            void solve_linear_problem();
+
+            // Save the results - Disp, stress, reaction
+            void output_results(const unsigned int load_step) const;
+            void output_stress(const unsigned int load_step);
+            void reaction(Tensor&lt1, dim&gt &reaction_stress, const types::boundary_id &boundary_id);
+            
+            MPI_Comm mpi_communicator;
+            const unsigned int n_mpi_processes;
+            const unsigned int this_mpi_process;
+
+            parallel::distributed::Triangulation&ltdim&gt triangulation;
+            
+            // Elasticity objects
             const FESystem&ltdim&gt fe;                         // FE System
             DoFHandler&ltdim&gt dof_handler;                    // DoF Handler
 
@@ -398,7 +1532,6 @@ namespace elas
         // redistribute dofs,
         dof_handler.distribute_dofs (fe);
 
-        // --- ELASTICITY
         // Recreate locally_owned_dofs and locally_relevant_dofs index sets - ELASTICITY
         locally_owned_dofs = dof_handler.locally_owned_dofs ();
         locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
@@ -407,7 +1540,6 @@ namespace elas
         soltrans.interpolate (distributed_solution_old);
 
         // Apply constraints on the interpolated solution
-        // to make sure it conforms with the new mesh
         setup_constraints(load_step);
         constraints.distribute (distributed_solution_old);
 
@@ -562,14 +1694,21 @@ namespace elas
                                                     fe_values.shape_grad (j, q_point)[component_i])
                                                     +
                                                     ((component_i == component_j) ?
-                                                    (fe_values.shape_grad (i, q_point) *  mu (E, nu) *
+                                                    (fe_values.shape_grad (i, q_point) 
+                                                    *  mu (E, nu) * 
                                                     fe_values.shape_grad (j, q_point)) 
-                                                                                    : 0)                              
+                                                    : 0)                              
                                                     ) * fe_values.JxW (q_point); //
                         }
                         
+                        // Cell rhs set to zero for the current example
+                        // Modify this entry to account for body forces
                         cell_rhs (i) += fe_values.shape_value (i, q_point) * 0
                                         * fe_values.JxW (q_point);
+
+                                        
+                        // To apply boundary forces you need to loop over the exterior boundaries
+                        // to populate the corresponding entries of the rhs
                     
                     }
                 }

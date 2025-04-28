@@ -28,16 +28,39 @@ body {
 .main-title {
     font-family: 'Arial', sans-serif;
     font-size: 50px;
+    margin-top: 40px; /* Extra space above main title */
+    margin-bottom: 30px; /* Extra space below main title */
 }
 
-h1, h2 {
+h1, h2, h3 {
+    margin-top: 30px; /* Space above headings */
+    margin-bottom: 20px; /* Space below headings */
     color: #ffff;
     font-weight: bold;
 }
 
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+
+p {
+    margin-top: 15px; /* Space above paragraph */
+    margin-bottom: 15px; /* Space below paragraph */
+    text-align: justify;
+}
+
 /* Sezioni di contenuto */
 section {
-    margin-bottom: 30px;
+    margin-bottom: 50px; /* More space between sections */
 }
 
 #projects ul {
@@ -55,33 +78,18 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Container for section description */
-.section-description {
-    max-width: 800px; /* Adjust this to control the width of the description box */
-    margin-left: 0px; /* Align the box to the left */
-    padding: 0px;
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for contrast */
-    border-radius: 8px; /* Optional: round corners */
-}
-
-.section-description p {
-    text-align: justify; /* Justify the text inside the description box */
-    color: #fff;
-    line-height: 1.3; /* Improve readability by adding line spacing */
-}
-
 /* Add space between unlisted description items and the next list item */
 ul li p {
     display: block;
-    margin-top: 7px; /* Adjust this value for spacing above the description */
-    margin-bottom: 15px; /* Adjust this value for spacing below the description */
+    margin-top: 7px;
+    margin-bottom: 15px;
 }
 
 /* Stile per il tasto di ritorno */
 .back-button {
-    position: fixed;        /* Rimane fisso anche se scrolli */
-    bottom: 20px;            /* 20px dal fondo */
-    right: 20px;             /* 20px dal bordo destro */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background-color: #57a8fe;
     color: white;
     padding: 10px 20px;
@@ -89,7 +97,7 @@ ul li p {
     border-radius: 5px;
     font-size: 16px;
     transition: background-color 0.3s;
-    z-index: 999;           /* Sta sopra gli altri elementi */
+    z-index: 999;
 }
 
 .back-button:hover {
@@ -138,63 +146,114 @@ ul li p {
     color: #007bff;
 }
 
+ul {
+    padding-left: 20px; /* Already in your CSS for left padding */
+    padding-right: 10px; /* New: right padding */
+}
+
 /* Spaziatura tra elementi della lista */
 ul li {
     margin-bottom: 6px;
 }
 
-/* Justify text in paragraphs and other text content */
+/* Justify text in paragraphs and list items */
 p, li {
-    text-align: justify; /* Ensure text is justified inside paragraphs and list items */
+    text-align: justify;
 }
 
 /* Style for equations */
 .equation {
-    text-align: center; /* Center-align the equation */
-    margin-top: 20px; /* Add space above the equation */
-    margin-bottom: 20px; /* Add space below the equation */
-    padding: 15px; /* Optional padding for better visibility */
-    background-color: rgba(255, 255, 255, 0.1); /* Light background color for the equation box */
-    border-radius: 8px; /* Rounded corners */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
 }
 
-/* Applicato solo all'interno di .equation */
 .equation ul {
-    list-style: none;  /* Rimuove i punti elenco */
-    padding-left: 0;   /* Rimuove la spaziatura a sinistra */
+    list-style: none;
+    padding-left: 0;
 }
 
 .equation li {
-    text-align: left;  /* Allinea il testo a sinistra */
-    margin-bottom: 5px;  /* Aggiungi un po' di spazio tra gli elementi della lista */
+    text-align: left;
+    margin-bottom: 5px;
 }
 
-/* Se vuoi usare ui invece di li */
+/* If you use ui instead of li (not recommended) */
 .equation ui {
-    text-align: left;  /* Allinea il testo a sinistra */
-    margin-bottom: 5px;  /* Spazio tra gli elementi */
+    text-align: left;
+    margin-bottom: 5px;
 }
 
 /* Container for the code box */
 .code-box {
-    background-color: #2e2e2e; /* Slightly dark background for the box */
+    background-color: #2e2e2e;
     padding: 15px;
-    border-radius: 8px; /* Rounded corners for a softer look */
-    margin-top: 20px; /* Add some space above the box */
-    margin-bottom: 20px; /* Add some space below the box */
-    width: 100%; /* Ensure the container takes up full width of the page */
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 /* Styling the preformatted text (code block) */
 .code-box pre {
-    color: #f8f8f2; /* Light text color for the code */
-    font-family: 'Courier New', monospace; /* Monospace font for better code readability */
-    font-size: 14px; /* Adjust font size as needed */
-    line-height: 1.6; /* Increase line spacing for better readability */
-    overflow-x: auto; /* Enables horizontal scrolling if the code is wider than the container */
-    white-space: pre-wrap; /* Ensures long lines wrap around inside the box */
-    margin: 0; /* Remove any default margin to keep it left-aligned */
-    padding: 0; /* Remove padding to ensure it starts directly at the left edge */
-    text-align: left; /* Explicitly set the text alignment to the left */
-    width: 100%; /* Ensure the text spans the full width of the container */
+    color: #f8f8f2;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+/* General styling for the section */
+.section-description {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Styling for each list item */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Styling for the code block */
+code {
+    font-family: 'Courier New', monospace;
+    background-color: #2e2e2e;
+    padding: 1px 3px;
+    border-radius: 4px;
+    color: #f8f8f2;
+}
+
+/* Styling for the description text under each code */
+li > .description {
+    margin-top: 5px;
+    padding-left: 20px;  /* Light indent */
+    font-size: 16px;     /* Inherited font size for consistency */
+    color: #fff;        /* White text color for contrast */
+    text-align: justify; /* Ensures text is justified */
+    line-height: 1.5;    /* Adjust line height for better readability */
+    display: block;  /* Forces the description to appear on a new line */
+}
+
+/* Optional: Style for the title */
+.section-description p {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
 }
