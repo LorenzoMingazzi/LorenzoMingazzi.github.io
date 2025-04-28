@@ -101,11 +101,756 @@ title: Linear Elasticity
 
     <div class="code-box">
         <pre>
-#include &lt;iostream&gt;
-using namespace std;
+#include &ltdeal.II/base/quadrature_lib.h&gt
+#include &ltdeal.II/base/function.h&gt
+#include &ltdeal.II/base/timer.h&gt
+#include &ltdeal.II/lac/generic_linear_algebra.h&gt
+#include &ltdeal.II/lac/vector.h&gt
+#include &ltdeal.II/lac/full_matrix.h&gt
+#include &ltdeal.II/lac/precondition.h&gt
+#include &ltdeal.II/lac/petsc_precondition.h&gt
+#include &ltdeal.II/lac/solver_cg.h&gt
+#include &ltdeal.II/lac/affine_constraints.h&gt
+#include &ltdeal.II/lac/dynamic_sparsity_pattern.h&gt
+#include &ltdeal.II/grid/grid_generator.h&gt
+#include &ltdeal.II/dofs/dof_handler.h&gt
+#include &ltdeal.II/dofs/dof_tools.h&gt
+#include &ltdeal.II/dofs/dof_accessor.h&gt
+#include &ltdeal.II/grid/tria_accessor.h&gt
+#include &ltdeal.II/fe/fe_values.h&gt
+#include &ltdeal.II/fe/fe_system.h&gt
+#include &ltdeal.II/fe/fe_q.h&gt
+#include &ltdeal.II/grid/grid_refinement.h&gt
+#include &ltdeal.II/numerics/vector_tools.h&gt
+#include &ltdeal.II/numerics/matrix_tools.h&gt
+#include &ltdeal.II/numerics/data_out.h&gt
+#include &ltdeal.II/numerics/error_estimator.h&gt
+#include &ltdeal.II/base/utilities.h&gt
+#include &ltdeal.II/base/conditional_ostream.h&gt
+#include &ltdeal.II/base/index_set.h&gt
+#include &ltdeal.II/lac/sparsity_tools.h&gt
+#include &ltdeal.II/distributed/tria.h&gt
+#include &ltdeal.II/distributed/grid_refinement.h&gt
+#include &ltdeal.II/distributed/solution_transfer.h&gt
+#include &ltdeal.II/base/quadrature_point_data.h&gt
+#include &ltdeal.II/base/tensor_function.h&gt
+#include &ltfstream&gt
+#include &ltiostream&gt
+#include &ltrandom&gt
 
-int main() {
-    cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+namespace elas
+{
+    using namespace dealii;
+    
+    template &ltint dim&gt
+    class Elasticity
+    {
+        public:
+            Elasticity();
+            void run();
+
+        private:
+            // Mesh generation and refinement
+            void create_mesh();
+            void refine_mesh(const unsigned int load_step);
+
+            // Elasticity problem functions
+            void setup_constraints (const unsigned int load_step); 
+            void setup(const unsigned int load_step);
+            void assemble();
+            void solve_linear_problem();
+
+            // Save the results - Disp, stress, reaction, energies
+            void output_results(const unsigned int load_step) const;
+            void output_stress(const unsigned int load_step);
+            void reaction(Tensor&lt1, dim&gt &reaction_stress, const types::boundary_id &boundary_id);
+
+            // Parallel setup and print on screen
+            MPI_Comm mpi_communicator;
+            const unsigned int n_mpi_processes;
+            const unsigned int this_mpi_process;
+
+            parallel::distributed::Triangulation&ltdim&gt triangulation;
+
+            // Objects for elasticity
+            const FESystem&ltdim&gt fe;                         // FE System
+            DoFHandler&ltdim&gt dof_handler;                    // DoF Handler
+
+            IndexSet locally_owned_dofs;                        // IndexSet - Locally Owned
+            IndexSet locally_relevant_dofs;                     // IndexSet - Locally relevant 
+            AffineConstraints&ltdouble&gt constraints;              // Affine Constraint  
+
+            PETScWrappers::MPI::SparseMatrix system_matrix;     // Elastcitiy Matrix
+            PETScWrappers::MPI::Vector system_rhs;              // RHS 
+
+            PETScWrappers::MPI::Vector local_solution;          // MPI Split solution
+            PETScWrappers::MPI::Vector distributed_solution;    // Full Solution
+
+            PETScWrappers::MPI::Vector distributed_solution_old;   // This is for the refinement
+
+            const QGauss&ltdim&gt quadrature_formula;           // Quadrature formula
+
+            Tensor&lt1, dim&gt reaction_stress;
+
+            // Domain dimensions
+            double L = 1;
+            double H = 0.05;
+            double W = 0.05;
+
+            const unsigned int nx = 25;
+            const unsigned int ny = 2;
+            const unsigned int nz = 2;
+            // Material properties
+            double E = 100;
+            double nu = 0.3;      
+
+            double load_increment = 0.01;     // Load increment applied
+            double applied_load = 0;          // Current applied_load += load_increment
+            double num_load_steps = 5;        // Total load increment  
+            
+            ConditionalOStream pcout;
+            TimerOutput computing_timer;       
+    }; // End of Elast class
+
+    // Constructor
+    template &ltint dim&gt
+    Elasticity&ltdim&gt::Elasticity()
+        : mpi_communicator(MPI_COMM_WORLD)
+        , n_mpi_processes(Utilities::MPI::n_mpi_processes(mpi_communicator))
+        , this_mpi_process(Utilities::MPI::this_mpi_process(mpi_communicator))
+        , triangulation (mpi_communicator)
+        , fe (FE_Q&ltdim&gt (1), dim)
+        , dof_handler (triangulation)
+        , quadrature_formula (fe.degree + 1)
+        , pcout (std::cout, this_mpi_process == 0)
+        , computing_timer (mpi_communicator, pcout, TimerOutput::never, TimerOutput::wall_times)
+    {}
+
+    // Evaluation of the elastic constant
+    inline double lambda (const float E, const float nu)
+    {
+        return (E * nu) / ((1 + nu) * (1 - 2 * nu));
+    }
+
+    inline double mu (const float E, const float nu)
+    {
+        return E / (2 * (1 + nu));
+    }
+
+    // -----------------------------
+    // ----------- MESH ------------    
+    // -----------------------------
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::create_mesh()
+    {
+        // Define the initial coarse subdivision
+        const std::vector&ltunsigned int&gt repetitions = {nx,ny,nz};
+        
+        // Create Mesh
+        Point&ltdim&gt p1, p2;
+        if constexpr (dim == 2)
+        {
+            p1 = Point&ltdim&gt(0, 0);
+            p2 = Point&ltdim&gt(L, H);
+        }
+        else if constexpr (dim == 3)
+        {
+            p1 = Point&ltdim&gt(0, 0, 0);
+            p2 = Point&ltdim&gt(L, H, W);
+        }
+
+        // create coarse mesh
+        GridGenerator::subdivided_hyper_rectangle (triangulation, repetitions, p1, p2); 
+        
+        // Set Fce IDs
+        for (const auto &cell : triangulation.active_cell_iterators ())
+        {
+            for (const auto &face : cell-&gtface_iterators ())
+            {
+                if (face-&gtat_boundary ())
+                {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center(0) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (0);
+
+                    else if (std::fabs (center(0) - L) &lt 1e-12)
+                        face-&gtset_boundary_id (1);
+
+                    else if (std::fabs (center(1) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (2);
+
+                    else if (std::fabs (center(1) - H) &lt 1e-12)
+                        face-&gtset_boundary_id (3);
+
+                    // Check if we are in 3D before accessing center(2)
+                    if constexpr (dim == 3)
+                    {
+                        if (std::fabs(center(2) - 0) &lt 1e-12)
+                            face-&gtset_boundary_id(4);
+                        else if (std::fabs(center(2) - W) &lt 1e-12)
+                            face-&gtset_boundary_id(5);
+                    }
+                }
+            }
+        }
+
+        // Initialize dof handler and extact Owned/Relevant DoFs
+        dof_handler.distribute_dofs (fe);
+        
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        // Initialize the old solution for refinement purposes
+        distributed_solution_old.reinit (locally_owned_dofs, mpi_communicator);
+        
+        pcout &lt&lt "No. of levels in triangulation: " 
+              &lt&lt triangulation.n_global_levels () &lt&lt std::endl;
+        
+        pcout &lt&lt "   Number of locally owned cells on the process:       " 
+              &lt&lt triangulation.n_locally_owned_active_cells () &lt&lt std::endl;
+        
+        pcout &lt&lt "Number of global cells:" &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl;
+    
+        pcout &lt&lt "  Total Number of globally active cells:       "  
+              &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+              &lt&lt "   Number of degrees of freedom for elasticity: " 
+              &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::refine_mesh(const unsigned int load_step)
+    {
+        Vector&ltfloat&gt estimated_error_per_cell (triangulation.n_locally_owned_active_cells ());
+        KellyErrorEstimator&ltdim&gt::estimate (dof_handler,
+                                            QGauss&ltdim-1&gt (fe.degree + 1),
+                                            std::map&lttypes::boundary_id, const Function&ltdim&gt *&gt(),
+                                            local_solution, estimated_error_per_cell);
+
+        // Initialize SolutionTransfer object
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt
+            soltrans (dof_handler);
+        
+        parallel::distributed::GridRefinement::refine_and_coarsen_fixed_fraction (
+            triangulation, estimated_error_per_cell, 0.30, 0.01);
+
+        if (triangulation.n_global_levels () &gt= 4)
+        {
+            for (const auto &cell : triangulation.active_cell_iterators_on_level (3))
+            if (cell-&gtis_locally_owned ())
+                cell-&gtclear_refine_flag ();
+        }
+        
+        // Prepare the triangulation
+        triangulation.prepare_coarsening_and_refinement ();
+
+        // Prepare the SolutionTransfer object for coarsening and refinement
+        // and give the solution vector that we intend to interpolate later,
+        soltrans.prepare_for_coarsening_and_refinement (local_solution);
+
+        // Do the refinement
+        triangulation.execute_coarsening_and_refinement ();
+        
+        // redistribute dofs,
+        dof_handler.distribute_dofs (fe);
+
+        // --- ELASTICITY
+        // Recreate locally_owned_dofs and locally_relevant_dofs index sets - ELASTICITY
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+
+        distributed_solution_old.reinit (locally_owned_dofs, mpi_communicator);
+        soltrans.interpolate (distributed_solution_old);
+
+        // Apply constraints on the interpolated solution
+        // to make sure it conforms with the new mesh
+        setup_constraints(load_step);
+        constraints.distribute (distributed_solution_old);
+
+        // Copy distributed_solution_old to local_solution
+        local_solution.reinit(locally_owned_dofs,
+                                locally_relevant_dofs,
+                                mpi_communicator);
+        local_solution = distributed_solution_old;
+    }
+
+    // -----------------------------
+    // -------- ELASTICITY ---------
+    // -----------------------------
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_constraints (const unsigned int load_step)
+    {
+        constraints.clear ();
+        constraints.reinit (locally_relevant_dofs);
+
+        DoFTools::make_hanging_node_constraints (dof_handler, constraints);
+
+        const FEValuesExtractors::Scalar u_x (0);
+        const FEValuesExtractors::Scalar u_y (1);
+
+        const ComponentMask u_x_mask = fe.component_mask (u_x);
+        const ComponentMask u_y_mask = fe.component_mask (u_y);
+
+        applied_load = load_increment*load_step;
+        const double u_x_values_right = 0.5*applied_load;
+        const double u_x_values_left = -0.5*applied_load;
+
+        const double u_fix = 0.0;
+
+        VectorTools::interpolate_boundary_values (dof_handler, 0,
+                                Functions::ConstantFunction&ltdim&gt (u_x_values_left, dim),
+                                constraints, 
+                                u_x_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler, 1,
+                                Functions::ConstantFunction&ltdim&gt (u_x_values_right, dim), 
+                                constraints,
+                                u_x_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler, 2,
+                                Functions::ConstantFunction&ltdim&gt (u_fix, dim), 
+                                constraints,
+                                u_y_mask);
+
+        if constexpr (dim == 3)
+        {
+            const FEValuesExtractors::Scalar u_z (2);
+            const ComponentMask u_z_mask = fe.component_mask (u_z);
+
+            VectorTools::interpolate_boundary_values (dof_handler, 4,
+                                Functions::ConstantFunction&ltdim&gt (u_fix, dim),
+                                constraints,
+                                u_z_mask);
+        }
+
+        constraints.close ();
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup(const unsigned int load_step)
+    {
+        TimerOutput::Scope ts(computing_timer, "setup_system");
+        
+        // Initialize the dofs contained locally as well as those of the near cells
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        local_solution.reinit (locally_owned_dofs,
+                                locally_relevant_dofs,
+                                mpi_communicator);
+
+        // Initialize the contraints objects for BC and Hanging Nodes during refinement
+        system_rhs.reinit (locally_owned_dofs, mpi_communicator);
+        distributed_solution.reinit (locally_owned_dofs, mpi_communicator);
+        
+        // Initialize hanging nodes and constrains
+        setup_constraints (load_step);  
+        
+        // Sparsity pattern initialization (where matrix has nonzero entries)
+        DynamicSparsityPattern dsp(locally_relevant_dofs);
+        DoFTools::make_sparsity_pattern (dof_handler,
+                                            dsp, 
+                                            constraints, 
+                                            false);
+        SparsityTools::distribute_sparsity_pattern (dsp,
+                                                    dof_handler.locally_owned_dofs (),
+                                                    mpi_communicator,
+                                                    locally_relevant_dofs);
+        
+        // Elasticity Matrix
+        system_matrix.reinit (locally_owned_dofs,
+                                        locally_owned_dofs, 
+                                        dsp, 
+                                        mpi_communicator);
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::assemble()
+    {
+        TimerOutput::Scope ts (computing_timer, "assembly");
+
+        // Clean the current matrices 
+        system_rhs = 0;
+        system_matrix = 0;
+
+        // Initialize the FEValues Objects
+        FEValues&ltdim&gt fe_values (fe, quadrature_formula,
+                                update_values | update_gradients |
+                                update_quadrature_points | update_JxW_values);
+
+        // Number of DoFs and Gauss points per cell
+        const unsigned int dofs_per_cell = fe.n_dofs_per_cell ();
+        
+        // Local Matrices and Vector
+        FullMatrix&ltdouble&gt cell_matrix (dofs_per_cell, dofs_per_cell);
+        Vector&ltdouble&gt cell_rhs (dofs_per_cell);
+
+        // Create vector to store the local dof indices
+        std::vector&lttypes::global_dof_index&gt local_dof_indices (dofs_per_cell);
+
+        // loop over the cells
+        for (const auto &cell : dof_handler.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                // Reset the local matrix/rhs of the cell
+                cell_matrix = 0;
+                cell_rhs = 0;
+
+                fe_values.reinit (cell);
+            
+                // loop over the gauss point of the cell
+                for (const unsigned int q_point : fe_values.quadrature_point_indices ())
+                {
+                    for (const unsigned int i : fe_values.dof_indices ())
+                    {
+                        const unsigned int component_i = fe.system_to_component_index (i).first;
+
+                        for (const unsigned int j : fe_values.dof_indices ())
+                        {
+                            const unsigned int component_j = fe.system_to_component_index (j).first;
+                            cell_matrix (i, j) +=  ((fe_values.shape_grad (i, q_point)[component_i] 
+                                                    * lambda (E, nu) *
+                                                    fe_values.shape_grad (j, q_point)[component_j])
+                                                    +
+                                                    (fe_values.shape_grad (i, q_point)[component_j] 
+                                                    * mu (E, nu) *
+                                                    fe_values.shape_grad (j, q_point)[component_i])
+                                                    +
+                                                    ((component_i == component_j) ?
+                                                    (fe_values.shape_grad (i, q_point) *  mu (E, nu) *
+                                                    fe_values.shape_grad (j, q_point)) 
+                                                                                    : 0)                              
+                                                    ) * fe_values.JxW (q_point); //
+                        }
+                        
+                        cell_rhs (i) += fe_values.shape_value (i, q_point) * 0
+                                        * fe_values.JxW (q_point);
+                    
+                    }
+                }
+                cell-&gtget_dof_indices (local_dof_indices);
+                constraints.distribute_local_to_global (cell_matrix,
+                                                        cell_rhs, 
+                                                        local_dof_indices, 
+                                                        system_matrix,
+                                                        system_rhs);
+            }
+        }
+        system_matrix.compress (VectorOperation::add);
+        system_rhs.compress (VectorOperation::add);
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::solve_linear_problem()
+    {
+        TimerOutput::Scope ts (computing_timer, "solve_linear_system");
+        // CG
+        SolverControl solver_control (100000, 1e-12* system_rhs.l2_norm());
+        SolverCG&ltPETScWrappers::MPI::Vector&gt solver (solver_control);
+
+        PETScWrappers::PreconditionBlockJacobi preconditioner(system_matrix);
+        
+        solver.solve (system_matrix,
+                        distributed_solution,
+                        system_rhs,
+                        preconditioner);
+    
+        pcout &lt&lt "   Solved in " &lt&lt solver_control.last_step () &lt&lt " iterations." &lt&lt std::endl;
+    
+        constraints.distribute (distributed_solution);
+    }
+
+    // -----------------------------
+    // ---------- OUTPUT -----------
+    // -----------------------------
+    // Solution
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::output_results (const unsigned int load_step) const
+    {
+        std::vector&ltstd::string&gt displacement_names (dim, "displacement");
+        std::vector&ltDataComponentInterpretation::DataComponentInterpretation&gt 
+            displacement_component_interpretation (dim, 
+                        DataComponentInterpretation::component_is_part_of_vector);
+
+        DataOut&ltdim&gt data_out_phasefield;
+        data_out_phasefield.add_data_vector (dof_handler,
+                                            local_solution,
+                                            displacement_names,
+                                            displacement_component_interpretation);
+
+        Vector&ltdouble&gt subdomain (triangulation.n_active_cells ());
+        for (unsigned int i = 0; i &lt subdomain.size (); ++i)
+        {
+            subdomain (i) = triangulation.locally_owned_subdomain ();
+        }
+
+        data_out_phasefield.add_data_vector (subdomain, "subdomain");
+        data_out_phasefield.build_patches ();
+        const std::string pvtu_filename = data_out_phasefield.write_vtu_with_pvtu_record ("./", 
+                                                                                    "solution",
+                                                                   load_step, mpi_communicator, 
+                                                                                             2, 
+                                                                                             0);
+
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.push_back(std::pair&ltdouble, std::string&gt(load_step, pvtu_filename));
+            std::ofstream pvd_output("./solution_u.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+
+    // Stresses
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::output_stress(const unsigned int load_step)
+    {
+        // Vettori per cella in Vector&ltfloat&gt
+        Vector&ltfloat&gt s_xx(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_xy(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_yy(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_zz(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_xz(triangulation.n_active_cells());
+        Vector&ltfloat&gt s_yz(triangulation.n_active_cells());
+    
+        FEValues&ltdim&gt fe_values(fe, quadrature_formula,
+                                update_gradients | update_JxW_values);
+    
+        const unsigned int n_q_points = quadrature_formula.size();
+        const FEValuesExtractors::Vector displacements(0);
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_tensor(n_q_points);
+    
+        for (const auto &cell : dof_handler.active_cell_iterators())
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                fe_values.reinit(cell);
+                fe_values[displacements].get_function_symmetric_gradients(local_solution,
+                                                                          strain_tensor);
+    
+                double c_s_xx = 0, c_s_xy = 0, c_s_yy = 0;
+                double c_s_zz = 0, c_s_xz = 0, c_s_yz = 0;
+    
+                for (unsigned int q = 0; q &lt n_q_points; ++q)
+                {
+                    const auto &eps_u = strain_tensor[q];
+                    const double tr = trace(eps_u);
+                    const auto stress = 2.0 * mu(E, nu) * eps_u + lambda(E, nu)
+                                        * tr * unit_symmetric_tensor&ltdim&gt();
+    
+                    c_s_xx += stress[0][0];
+                    c_s_xy += stress[0][1];
+                    c_s_yy += stress[1][1];
+    
+                    if constexpr (dim == 3)
+                    {
+                        c_s_zz += stress[2][2];
+                        c_s_xz += stress[0][2];
+                        c_s_yz += stress[1][2];
+                    }
+                }
+    
+                const unsigned int cell_index = cell-&gtactive_cell_index();
+                s_xx[cell_index] = c_s_xx / n_q_points;
+                s_xy[cell_index] = c_s_xy / n_q_points;
+                s_yy[cell_index] = c_s_yy / n_q_points;
+    
+                if constexpr (dim == 3)
+                {
+                    s_zz[cell_index] = c_s_zz / n_q_points;
+                    s_xz[cell_index] = c_s_xz / n_q_points;
+                    s_yz[cell_index] = c_s_yz / n_q_points;
+                }
+            }
+        }
+    
+        DataOut&ltdim&gt data_out;
+        data_out.attach_triangulation(triangulation);
+    
+        data_out.add_data_vector(s_xx, "s_xx", DataOut&ltdim&gt::type_cell_data);
+        data_out.add_data_vector(s_xy, "s_xy", DataOut&ltdim&gt::type_cell_data);
+        data_out.add_data_vector(s_yy, "s_yy", DataOut&ltdim&gt::type_cell_data);
+    
+        if constexpr (dim == 3)
+        {
+            data_out.add_data_vector(s_zz, "s_zz", DataOut&ltdim&gt::type_cell_data);
+            data_out.add_data_vector(s_xz, "s_xz", DataOut&ltdim&gt::type_cell_data);
+            data_out.add_data_vector(s_yz, "s_yz", DataOut&ltdim&gt::type_cell_data);
+        }
+    
+        data_out.build_patches();
+    
+        const std::string pvtu_filename = data_out.write_vtu_with_pvtu_record(
+            "./", "stresses", load_step, mpi_communicator, 4);
+    
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.emplace_back(load_step, pvtu_filename);
+    
+            std::ofstream pvd_output("./stresses.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+    
+    // Reaction
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::reaction(Tensor&lt1, dim&gt &reaction_stress,
+                                       const types::boundary_id &boundary_id)
+    {
+        // Face quadrature formula
+        QGauss&ltdim - 1&gt face_quadrature_formula(5);
+
+        // Set up FE face values for vector-valued and scalar-valued solution
+        FEFaceValues&ltdim&gt fe_face_values(fe, face_quadrature_formula,
+                                        UpdateFlags(update_values |
+                                                    update_gradients |
+                                                    update_quadrature_points |
+                                                    update_normal_vectors |
+                                                    update_JxW_values));
+
+        const unsigned int n_face_q_points = face_quadrature_formula.size();
+
+        // Extract displacements for gradient calculation
+        const FEValuesExtractors::Vector displacements(0);
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_tensor(n_face_q_points);
+
+        // Parallel DoFHandler iterator
+        typename DoFHandler&ltdim&gt::active_cell_iterator cell = dof_handler.begin_active(),
+                                                        endc = dof_handler.end();
+
+        Tensor&lt1, dim&gt reaction_mpi;
+
+        // Loop over all cells in the triangulation
+        for (; cell != endc; ++cell)
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                // Loop over all faces of the current cell
+                for (unsigned int face = 0; face &lt GeometryInfo&ltdim&gt::faces_per_cell; ++face)
+                {
+                    // Check if the current face belongs to the specified boundary
+                    if (cell-&gtface(face)-&gtboundary_id() == boundary_id)
+                    {
+                        // Reinitialize FE face values for the current face
+                        fe_face_values.reinit(cell, face);
+                        fe_face_values[displacements].get_function_symmetric_gradients(local_solution, strain_tensor);
+
+                        // Loop over quadrature points on the face
+                        for (unsigned int q_point = 0; q_point &lt n_face_q_points; ++q_point)
+                        {
+                            const auto &eps_u = strain_tensor[q_point];
+                            const Tensor&lt1, dim&gt &N = fe_face_values.normal_vector(q_point);
+                            const double JxW_f = fe_face_values.JxW(q_point);
+
+                            // Compute the stress tensor using the strain
+                            const double tr = trace(eps_u);
+                            const auto stress = 2.0 * mu(E, nu) * eps_u + lambda(E, nu)
+                                                 * tr * unit_symmetric_tensor&ltdim&gt();
+
+                            // Accumulate the contribution to the reaction stress
+                            reaction_mpi += stress * N * JxW_f;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Sum the reaction stresses from all MPI ranks and print it
+        reaction_stress = Utilities::MPI::sum(reaction_mpi, mpi_communicator);
+        for (unsigned int i = 0; i &lt dim; ++i)
+        {
+            pcout &lt&lt "   R_" &lt&lt (char)('x' + i) &lt&lt ": " &lt&lt reaction_stress[i] &lt&lt std::endl;
+        }
+    }
+
+    // -----------------------------
+    // ----------- RUN -------------
+    // -----------------------------
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::run()
+    {
+        Timer timer;
+        timer.start ();
+        pcout &lt&lt "Running on " &lt&lt Utilities::MPI::n_mpi_processes (mpi_communicator) 
+              &lt&lt " MPI rank(s)..." &lt&lt std::endl;
+
+        create_mesh();
+
+        // Loop over load steps
+        for (unsigned int load_step = 0; load_step &lt= num_load_steps; load_step++)
+        {
+            pcout &lt&lt " --- Load increment number : " &lt&lt load_step &lt&lt std::endl;
+
+            setup (load_step);
+            assemble ();
+            solve_linear_problem ();
+            
+            // Update ghost values after the solution
+            local_solution = distributed_solution;
+            local_solution.update_ghost_values();
+            
+            // Prepare for refinement
+            distributed_solution_old = local_solution;
+            
+            // Refine
+            refine_mesh(load_step);
+
+            pcout &lt&lt "  Total New Number of globally active cells:       "  
+                  &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+                  &lt&lt "   New Number of degrees of freedom for elasticity: " 
+                  &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+            
+            // Save results
+            output_results (load_step);
+            output_stress (load_step);
+            reaction(reaction_stress, 1);
+
+            // Print the table of cpmputing times
+            computing_timer.print_summary ();
+            computing_timer.reset ();
+            pcout &lt&lt std::endl;
+        }
+
+        timer.stop ();
+        pcout &lt&lt "Total run time: " &lt&lt timer.wall_time () &lt&lt " seconds." &lt&lt std::endl;
+    }
+} // End of namespace Elasticity
+
+// -----------------------------
+// ---------- MAIIN ------------
+// -----------------------------
+int main (int argc, char *argv[])
+{
+    try
+    {
+        using namespace dealii;
+        using namespace elas;
+
+        Utilities::MPI::MPI_InitFinalize mpi_initialization (argc, argv, 1);
+
+        Elasticity&lt3&gt elasticity;
+        elasticity.run ();
+    }
+    catch (std::exception &exc)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Exception on processing: " &lt&lt std::endl &lt&lt exc.what ()
+        &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Unknown exception!" &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        return 1;
+    }
+
     return 0;
 }
         </pre>

@@ -15,7 +15,7 @@ body {
     min-height: 100vh;
     background: #111111;
     color: #ffff;
-    max-width: 1000px;
+    max-width: 62%;
     margin: 0 auto;
     padding: 10px;
     margin-left: 0px; /* 260px (sidebar) + 30px di spazio */
@@ -106,9 +106,9 @@ ul li p {
     top: 20px;
     right: 20px;
     background: rgba(22, 26, 45, 0.9);
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
-    width: 200px;
+    width: 20%;
     z-index: 1000;
     overflow-y: auto;
 }
