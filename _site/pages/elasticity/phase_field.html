@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phase Field</title>
+    <title>Phase-Field</title>
     <!-- Link for Google Font and Icons-->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
@@ -19,8 +19,13 @@
         </div>
         <ul class="sidebar-links">
             <h4>
+                <a href="/index.html">Home</a>
+            </h4>
+            <h4> </h4>
+            <h4>
                 <a href="/pages/start.html">Getting Started</a>
             </h4>
+            <h4> </h4>
             <h4>
                 <a href="/pages/c++.html">C++</a>
             </h4>
@@ -59,7 +64,16 @@
 
     <!-- Contenuto principale -->
     <main class="content">
-        <!-- Table of Contents -->
+        <html lang="en">
+<head>
+    <!-- Qui metti il riferimento al file CSS -->
+    <link rel="stylesheet" href="/css/style_sidebar.css">
+    <link rel="stylesheet" href="/css/style_content.css"> <!-- Se hai un secondo CSS, tipo per lo stile delle sezioni -->
+</head>
+
+
+
+<!-- Table of Contents -->
 <div class="page-toc">
     <h3>Contents</h3>
     <ul>
@@ -67,51 +81,1265 @@
         <li><a href="#section2">Theory</a></li>
         <li><a href="#section3">Implementation</a></li>
         <li><a href="#section4">Results</a></li>
+        <li><a href="#section5">Complete Code</a></li>
     </ul>
 </div>
 
 <!-- Main Content -->
-<h1>Here is the basic demo for the Phase field problem</h1>
-<p>Put some text and code here.</p>
+<h1>Phase Field for Brittle Fracture</h1>
 
 <section id="section1">
     <h2>Introduction</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>TBA
     </p>
 </section>
 
 <section id="section2">
     <h2>Theory</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>TBA
     </p>
 </section>
 
 <section id="section3">
     <h2>Implementation</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>TBA
     </p>
 </section>
 
 <section id="section4">
     <h2>Results</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>TBA
     </p>
+</section>
+
+<section id="section5"></section>
+    <h2>Complete code</h2>
+
+    <div class="code-box">
+        <pre>
+#include &ltdeal.II/base/quadrature_lib.h&gt
+#include &ltdeal.II/base/function.h&gt
+#include &ltdeal.II/base/timer.h&gt
+#include &ltdeal.II/lac/generic_linear_algebra.h&gt
+#include &ltdeal.II/lac/vector.h&gt
+#include &ltdeal.II/lac/full_matrix.h&gt
+#include &ltdeal.II/lac/precondition.h&gt
+#include &ltdeal.II/lac/petsc_precondition.h&gt
+#include &ltdeal.II/lac/solver_cg.h&gt
+#include &ltdeal.II/lac/affine_constraints.h&gt
+#include &ltdeal.II/lac/dynamic_sparsity_pattern.h&gt
+#include &ltdeal.II/grid/grid_generator.h&gt
+#include &ltdeal.II/dofs/dof_handler.h&gt
+#include &ltdeal.II/dofs/dof_tools.h&gt
+#include &ltdeal.II/dofs/dof_accessor.h&gt
+#include &ltdeal.II/grid/tria_accessor.h&gt
+#include &ltdeal.II/fe/fe_values.h&gt
+#include &ltdeal.II/fe/fe_system.h&gt
+#include &ltdeal.II/fe/fe_q.h&gt
+#include &ltdeal.II/grid/grid_refinement.h&gt
+#include &ltdeal.II/numerics/vector_tools.h&gt
+#include &ltdeal.II/numerics/matrix_tools.h&gt
+#include &ltdeal.II/numerics/data_out.h&gt
+#include &ltdeal.II/numerics/error_estimator.h&gt
+#include &ltdeal.II/base/utilities.h&gt
+#include &ltdeal.II/base/conditional_ostream.h&gt
+#include &ltdeal.II/base/index_set.h&gt
+#include &ltdeal.II/lac/sparsity_tools.h&gt
+#include &ltdeal.II/distributed/tria.h&gt
+#include &ltdeal.II/distributed/grid_refinement.h&gt
+#include &ltdeal.II/distributed/solution_transfer.h&gt
+#include &ltdeal.II/base/quadrature_point_data.h&gt
+#include &ltdeal.II/base/tensor_function.h&gt
+#include &ltfstream&gt
+#include &ltiostream&gt
+#include &ltrandom&gt
+
+const unsigned int damage_type = 2; // 1 for quadratic // 2 for linear
+
+namespace elas
+{
+    using namespace dealii;
+    
+    template&ltint dim&gt
+    SymmetricTensor&lt4, dim&gt get_stress_strain_tensor(const double lambda, const double mu)
+    {
+        SymmetricTensor&lt4, dim&gt tmp;
+        for (unsigned int i = 0; i &lt dim; ++i)
+            for (unsigned int j = 0; j &lt dim; ++j)
+                for (unsigned int k = 0; k &lt dim; ++k)
+                    for (unsigned int l = 0; l &lt dim; ++l)
+                        tmp[i][j][k][l] = (((i == k) && (j == l) ? mu : 0.0) +
+                            ((i == l) && (j == k) ? mu : 0.0) +
+                            ((i == j) && (k == l) ? lambda : 0.0));
+        return tmp;
+    }
+
+    template&ltint dim&gt
+    inline SymmetricTensor&lt2, dim&gt get_strain(const FEValues&ltdim&gt& fe_values,
+                                            const unsigned int   shape_func,
+                                            const unsigned int   q_point)
+    {
+        SymmetricTensor&lt2,dim&gt tmp;
+        for (unsigned int i = 0; i &lt dim; ++i)
+            tmp[i][i] = fe_values.shape_grad_component(shape_func, q_point, i)[i];
+        for (unsigned int i = 0; i &lt dim; ++i)
+            for (unsigned int j = i + 1; j &lt dim; ++j)
+                tmp[i][j] =
+                (fe_values.shape_grad_component(shape_func, q_point, i)[j] +
+                    fe_values.shape_grad_component(shape_func, q_point, j)[i]) /
+                2;
+        return tmp;
+    }
+
+    template&ltint dim&gt
+    inline SymmetricTensor&lt2, dim&gt get_strain(const std::vector&ltTensor&lt1, dim&gt&gt& grad)
+    {
+        Assert(grad.size() == dim, ExcInternalError());
+        SymmetricTensor&lt2, dim&gt strain;
+        for (unsigned int i = 0; i &lt dim; ++i)
+            strain[i][i] = grad[i][i];
+        for (unsigned int i = 0; i &lt dim; ++i)
+            for (unsigned int j = i + 1; j &lt dim; ++j)
+                strain[i][j] = (grad[i][j] + grad[j][i]) / 2;
+        return strain;
+    }
+
+    template &ltint dim&gt
+    class Elasticity
+    {
+        public:
+            Elasticity();
+            void run();
+
+        private:
+            // Mesh generation and refinement
+            void create_mesh();
+            void refine_mesh(const unsigned int load_step);
+
+            // Elasticity problem functions
+            void setup_constraints_elastic (const unsigned int load_step);     // Posso creare funz che applica BC o mettere a fine assembly matrix
+            void setup_elasticity(const unsigned int load_step);
+            void assemble_elasticity(const unsigned int load_step, const bool flag_iter);
+            void solve_linear_problem(const bool flag_iter);
+
+            // Damage problem functions
+            void setup_constraints_alpha();
+            void setup_system_alpha();
+            void assemble_system_alpha(PETScWrappers::MPI::Vector &present_solution_alpha, PETScWrappers::MPI::Vector &system_rhs_alpha);
+            double gc(const float GC, const float beta, const float x1, const float x2, const Point&ltdim&gt &p);
+
+            static PetscErrorCode FormFunction(SNES, Vec, Vec, void*);
+            static PetscErrorCode FormJacobian(SNES, Vec, Mat, Mat, void*);
+
+            // Save the results - Disp, stress, reaction, energies
+            void output_results(const unsigned int load_step) const;
+            void output_forces(const unsigned int load_step);
+            void output_energies(const unsigned int load_step);
+
+            // Parallel setup and print on screen
+            MPI_Comm mpi_communicator;
+            const unsigned int n_mpi_processes;
+            const unsigned int this_mpi_process;
+
+            parallel::distributed::Triangulation&ltdim&gt triangulation;
+
+            // Objects for elasticity
+            const FESystem&ltdim&gt fe_elastic;                         // FE System
+            DoFHandler&ltdim&gt dof_handler_elastic;                    // DoF Handler
+
+            IndexSet locally_owned_dofs_elastic;                  // IndexSet - Locally Owned
+            IndexSet locally_relevant_dofs_elastic;               // IndexSet - Locally relevant 
+            AffineConstraints&ltdouble&gt constraints_elastic;        // Affine Constraint  
+
+            static const SymmetricTensor&lt4,dim&gt stress_strain_tensor;
+            PETScWrappers::MPI::SparseMatrix system_matrix_elastic;                   // Elastcitiy Matrix
+            PETScWrappers::MPI::Vector locally_relevant_solution_elastic;             // MPI Split solution
+            PETScWrappers::MPI::Vector completely_distributed_solution_elastic;       // Full Solution
+            PETScWrappers::MPI::Vector newton_update_solution_elastic;       // Full Solution
+            PETScWrappers::MPI::Vector system_rhs_elastic;                            // RHS 
+
+            PETScWrappers::MPI::Vector completely_distributed_solution_elastic_old;   // This is for the refinement
+
+            const QGauss&ltdim&gt quadrature_formula_elastic;          // Quadrature formula
+
+            // Objects for damage
+            const FESystem&ltdim&gt fe_damage;                         // FE System
+            DoFHandler&ltdim&gt dof_handler_damage;                    // DoF Handler
+
+            IndexSet locally_owned_dofs_damage;                  // IndexSet - Locally Owned
+            IndexSet locally_relevant_dofs_damage;               // IndexSet - Locally relevant 
+            AffineConstraints&ltdouble&gt constraints_damage;        // Affine Constraint  
+            
+            PETScWrappers::MPI::SparseMatrix system_matrix_damage;                   // Elastcitiy Matrix
+            PETScWrappers::MPI::Vector system_rhs_damage;                            // RHS 
+
+            PETScWrappers::MPI::Vector locally_relevant_solution_damage;             // MPI Split solution
+            PETScWrappers::MPI::Vector completely_distributed_solution_damage;       // Full Solution
+            PETScWrappers::MPI::Vector completely_distributed_solution_damage_old;   // This is for the refinement
+            
+            PETScWrappers::MPI::Vector locally_damageLB;                      // MPI Split solution -&gt mi serve per interpolazione durante il raffittimento
+            PETScWrappers::MPI::Vector completely_distributed_damageLB;       // Full Solution LB -&gt uso nello SNES
+            PETScWrappers::MPI::Vector completely_distributed_damageLB_old;   // This is for the refinement -&gt storo la soluzione e la uso per interpolazione
+            
+            PETScWrappers::MPI::Vector completely_distributed_damageUB;       // Full Solution UB -&gt ricreo e setto 1 ogni volta che setuppo
+            
+            const QGauss&ltdim&gt quadrature_formula_damage;          // Quadrature formula
+
+            // Domain dimensions
+            double L = 1;
+            double H = 0.05;
+            double W = 0.05;
+
+            const unsigned int nx = 25;
+            const unsigned int ny = 2;
+            const unsigned int nz = 2;
+            // Material properties
+            double E = 100;
+            double nu = 0.3;      
+
+            // Damage parameters
+            double Gc = .01;
+            double ell = 0.02;
+            double k_res = 1e-6;  
+            double c_w;   
+
+            double load_increment = 0.01;   // Load increment applied
+            double applied_load = 0;       // Current applied_load += load_increment
+            double num_load_steps = 15;        // Total load increment  
+            
+            ConditionalOStream pcout;
+            TimerOutput computing_timer;       
+    }; // End of Elast class
+
+    // Constructor
+    template &ltint dim&gt
+    Elasticity&ltdim&gt::Elasticity()
+        : mpi_communicator(MPI_COMM_WORLD)
+        , n_mpi_processes(Utilities::MPI::n_mpi_processes(mpi_communicator))
+        , this_mpi_process(Utilities::MPI::this_mpi_process(mpi_communicator))
+        , triangulation (mpi_communicator)
+        , fe_elastic (FE_Q&ltdim&gt (1), dim)
+        , dof_handler_elastic (triangulation)
+        , quadrature_formula_elastic (fe_elastic.degree + 1)
+        , fe_damage (FE_Q&ltdim&gt (1), 1)
+        , dof_handler_damage (triangulation)
+        , quadrature_formula_damage (fe_elastic.degree + 1)
+        , c_w(damage_type == 1 ? 2.0 : 8.0 / 3.0)
+        , pcout (std::cout, this_mpi_process == 0)
+        , computing_timer (mpi_communicator, pcout, TimerOutput::never, TimerOutput::wall_times)
+    {}
+
+    // Evaluation of the elastic constant
+    inline double lambda (const float E, const float nu)
+    {
+        return (E * nu) / ((1 + nu) * (1 - 2 * nu));
+    }
+
+    inline double mu (const float E, const float nu)
+    {
+        return E / (2 * (1 + nu));
+    }
+
+    // Evaluation of the damage functions
+    inline double g_alpha (double &alpha)
+    {
+        return (1-alpha)*(1-alpha);
+    }
+
+    inline double g_prime_alpha (double &alpha)
+    {
+        return -2.+2.*alpha;
+    }
+
+    inline double g_second_alpha ()
+    {
+        return 2.;
+    }
+
+    inline double w_alpha (double &alpha)
+    {   
+        double tmp;
+        if (damage_type == 1)
+            tmp =  alpha*alpha;
+        else if (damage_type == 2)
+            tmp = alpha;    
+        return tmp;
+    }
+
+    inline double w_prime_alpha (double &alpha)
+    {   
+        double tmp;
+        if (damage_type == 1)
+            tmp = 2.*alpha;
+        else if (damage_type == 2)
+            tmp = 1.;    
+        return tmp;
+    }
+
+    inline double w_second_alpha ()
+    {   
+        double tmp;
+        if (damage_type == 1)
+            tmp =  2.;
+        else if (damage_type == 2)
+            tmp = 0.;    
+        return tmp;
+    }
+
+    template &ltint dim&gt
+    double Elasticity&ltdim&gt::gc(const float GC,
+                            const float beta,
+                            const float x1,
+                            const float x2,
+                            const Point&ltdim&gt &p)
+    {
+        if (((p[0] - x1) &gt 1e-6) && ((p[0] - x2) &lt 1e-6))
+        return GC * beta;
+        else
+        return GC;
+    }
+
+    // -----------------------------
+    // ----------- MESH ------------    
+    // -----------------------------
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::create_mesh()
+    {
+        // Define the initial coarse subdivision
+        const std::vector&ltunsigned int&gt repetitions = {nx,ny,nz};
+        
+        // Create Mesh
+        Point&ltdim&gt p1, p2;
+        if constexpr (dim == 2)
+        {
+            p1 = Point&ltdim&gt(0, 0);
+            p2 = Point&ltdim&gt(L, H);
+        }
+        else if constexpr (dim == 3)
+        {
+            p1 = Point&ltdim&gt(0, 0, 0);
+            p2 = Point&ltdim&gt(L, H, W);
+        }
+        GridGenerator::subdivided_hyper_rectangle (triangulation, repetitions, p1, p2); // create coarse mesh
+        
+        // Set Fce IDs
+        for (const auto &cell : triangulation.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                if (cell-&gtcenter()[0] &gt= (0.5*L-0.1) && cell-&gtcenter()[0] &lt= (0.5*L+0.1))
+                    cell-&gtset_material_id(1);
+                else
+                    cell-&gtset_material_id(0);
+            }
+
+            for (const auto &face : cell-&gtface_iterators ())
+            {
+                if (face-&gtat_boundary ())
+                {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center(0) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (0);
+
+                    else if (std::fabs (center(0) - L) &lt 1e-12)
+                        face-&gtset_boundary_id (1);
+
+                    else if (std::fabs (center(1) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (2);
+
+                    else if (std::fabs (center(1) - H) &lt 1e-12)
+                        face-&gtset_boundary_id (3);
+
+                        // Controlla se siamo in 3D prima di accedere a center(2)
+                    if constexpr (dim == 3)
+                    {
+                        if (std::fabs(center(2) - 0) &lt 1e-12)
+                            face-&gtset_boundary_id(4);
+                        else if (std::fabs(center(2) - W) &lt 1e-12)
+                            face-&gtset_boundary_id(5);
+                    }
+                }
+            }
+        }
+
+        // Initialize dof handler and extact Owned/Relevant DoFs
+        dof_handler_damage.distribute_dofs (fe_damage);
+        dof_handler_elastic.distribute_dofs (fe_elastic);
+        
+        //Initialising damage vectors
+        locally_owned_dofs_damage = dof_handler_damage.locally_owned_dofs ();
+        locally_relevant_dofs_damage = DoFTools::extract_locally_relevant_dofs (dof_handler_damage);
+        
+        // Actual solution -&gt local; Old solution -&gt global
+        locally_relevant_solution_damage.reinit(locally_owned_dofs_damage,
+                                                locally_relevant_dofs_damage,
+                                                mpi_communicator);
+        locally_damageLB.reinit (locally_owned_dofs_damage, 
+                                locally_relevant_dofs_damage,
+                                mpi_communicator);
+        
+        completely_distributed_solution_damage_old.reinit (locally_owned_dofs_damage, mpi_communicator);
+        completely_distributed_damageLB_old.reinit (locally_owned_dofs_damage, mpi_communicator);
+        completely_distributed_damageLB_old = 0;
+
+        // Do the same for elasticity
+        locally_owned_dofs_elastic = dof_handler_elastic.locally_owned_dofs ();
+        locally_relevant_dofs_elastic = DoFTools::extract_locally_relevant_dofs (dof_handler_elastic);
+        
+        // Initialize the old solution for refinement purposes
+        completely_distributed_solution_elastic_old.reinit (locally_owned_dofs_elastic, mpi_communicator);
+        
+        pcout &lt&lt "No. of levels in triangulation: " &lt&lt triangulation.n_global_levels () &lt&lt std::endl;
+        pcout &lt&lt "   Number of locally owned cells on the process:       " &lt&lt triangulation.n_locally_owned_active_cells () &lt&lt std::endl;
+        pcout &lt&lt "Number of global cells:" &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl;
+    
+        pcout &lt&lt "  Total Number of globally active cells:       "  &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+              &lt&lt "   Number of degrees of freedom for elasticity: " &lt&lt dof_handler_elastic.n_dofs () &lt&lt std::endl;
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::refine_mesh(const unsigned int load_step)
+    {
+        Vector&ltfloat&gt estimated_error_per_cell (triangulation.n_locally_owned_active_cells ());
+        KellyErrorEstimator&ltdim&gt::estimate (dof_handler_damage,
+                                          QGauss&ltdim-1&gt (fe_damage.degree + 1),
+                                          std::map&lttypes::boundary_id, const Function&ltdim&gt *&gt(), locally_relevant_solution_damage, estimated_error_per_cell);
+
+        // Initialize SolutionTransfer object
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt soltransDamage (dof_handler_damage);
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt soltransDamageLB (dof_handler_damage);
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt soltransElastic (dof_handler_elastic);
+        
+        parallel::distributed::GridRefinement::refine_and_coarsen_fixed_fraction (
+                    triangulation, estimated_error_per_cell, 0.15, 0.05);
+
+        if (triangulation.n_global_levels () &gt= 7)
+        {
+            for (const auto &cell : triangulation.active_cell_iterators_on_level (6))
+            if (cell-&gtis_locally_owned ())
+                cell-&gtclear_refine_flag ();
+        }
+        
+        // Prepare the triangulation
+        triangulation.prepare_coarsening_and_refinement ();
+
+        // Prepare the SolutionTransfer object for coarsening and refinement
+        // and give the solution vector that we intend to interpolate later,
+        soltransDamage.prepare_for_coarsening_and_refinement (locally_relevant_solution_damage);
+        soltransDamageLB.prepare_for_coarsening_and_refinement (locally_damageLB);
+        soltransElastic.prepare_for_coarsening_and_refinement (locally_relevant_solution_elastic);
+
+        // Do the refinement
+        triangulation.execute_coarsening_and_refinement ();
+        
+        // redistribute dofs,
+        dof_handler_damage.distribute_dofs (fe_damage);
+        dof_handler_elastic.distribute_dofs (fe_elastic);
+
+        // --- DAMAGE
+        // Recreate locally_owned_dofs and locally_relevant_dofs index sets 
+        locally_owned_dofs_damage = dof_handler_damage.locally_owned_dofs ();
+        locally_relevant_dofs_damage = DoFTools::extract_locally_relevant_dofs (dof_handler_damage);
+
+        completely_distributed_solution_damage_old.reinit (locally_owned_dofs_damage, mpi_communicator);
+        soltransDamage.interpolate (completely_distributed_solution_damage_old);
+
+        completely_distributed_damageLB_old.reinit (locally_owned_dofs_damage, mpi_communicator);
+        soltransDamageLB.interpolate (completely_distributed_damageLB_old);
+
+        // Apply constraints on the interpolated solution to make sure it conforms with the new mesh
+        setup_constraints_alpha ();
+        constraints_damage.distribute (completely_distributed_solution_damage_old);
+        constraints_damage.distribute (completely_distributed_damageLB_old);
+
+        // Copy completely_distributed_solution_damage_old to locally_relevant_solution_damage
+        locally_relevant_solution_damage.reinit (locally_owned_dofs_damage,
+                                                locally_relevant_dofs_damage, 
+                                                mpi_communicator);
+        locally_damageLB.reinit (locally_owned_dofs_damage,
+                                locally_relevant_dofs_damage, 
+                                mpi_communicator);
+        
+        locally_relevant_solution_damage = completely_distributed_solution_damage_old;
+        locally_damageLB = completely_distributed_damageLB_old;
+
+        // --- ELASTICITY
+        // Recreate locally_owned_dofs and locally_relevant_dofs index sets - ELASTICITY
+        locally_owned_dofs_elastic = dof_handler_elastic.locally_owned_dofs ();
+        locally_relevant_dofs_elastic = DoFTools::extract_locally_relevant_dofs (dof_handler_elastic);
+
+        completely_distributed_solution_elastic_old.reinit (locally_owned_dofs_elastic, mpi_communicator);
+        soltransElastic.interpolate (completely_distributed_solution_elastic_old);
+
+        // Apply constraints on the interpolated solution to make sure it conforms with the new mesh
+        setup_constraints_elastic(load_step);
+        constraints_elastic.distribute (completely_distributed_solution_elastic_old);
+
+        // Copy completely_distributed_solution_damage_old to locally_relevant_solution_damage
+        locally_relevant_solution_elastic.reinit(locally_owned_dofs_elastic,
+                                                 locally_relevant_dofs_elastic,
+                                                 mpi_communicator);
+        locally_relevant_solution_elastic = completely_distributed_solution_elastic_old;
+
+        for (const auto &cell : triangulation.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                if (cell-&gtcenter()[0] &gt= (0.5*L-0.1) && cell-&gtcenter()[0] &lt= (0.5*L+0.1))
+                    cell-&gtset_material_id(1);
+                else
+                    cell-&gtset_material_id(0);
+            }
+        }
+    }
+
+    // -----------------------------
+    // -------- ELASTICITY ---------
+    // -----------------------------
+    template &ltint dim&gt
+    const SymmetricTensor&lt4,dim&gt
+    Elasticity&ltdim&gt::stress_strain_tensor = get_stress_strain_tensor&ltdim&gt(/*lambda = */ (100*0.3)/((1+0.3)*(1-2*0.3)),
+                                                                          /*mu     = */ 100/(2.*(1+0.3)));
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_constraints_elastic (const unsigned int load_step)
+    {
+        /* constraints_elastic.clear ();
+        constraints_elastic.reinit (locally_relevant_dofs_elastic);
+        DoFTools::make_hanging_node_constraints (dof_handler_elastic, constraints_elastic);    
+        
+        for (const auto &cell : dof_handler_elastic.active_cell_iterators ())
+        if (cell-&gtis_locally_owned ())
+        {
+            for (const auto &face : cell-&gtface_iterators ())
+            {
+                if (face-&gtat_boundary ())
+                {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center (0) - 0.5*L) &lt 1e-12) // Face at L/2
+                    {
+                        for (const auto vertex_number : cell-&gtvertex_indices ())
+                        {
+                            const auto vert = cell-&gtvertex (vertex_number);
+                            const double y_bot = 0;
+                            if (std::fabs (vert (1) - 0) &lt 1e-12 && std::fabs (vert (0) - L/2) &lt 1e-12)
+                            {
+                                const unsigned int y_dof = cell-&gtvertex_dof_index (vertex_number, 1);
+                                constraints_elastic.add_line (y_dof);
+                                constraints_elastic.set_inhomogeneity (y_dof, 0);
+                                const unsigned int x_dof = cell-&gtvertex_dof_index (vertex_number, 0);
+                                constraints_elastic.add_line (x_dof);
+                                constraints_elastic.set_inhomogeneity (x_dof, 0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        const FEValuesExtractors::Scalar u_x (0);
+        const ComponentMask u_x_mask = fe_elastic.component_mask (u_x);
+
+        applied_load = load_increment*load_step;
+        const double u_x_values_right = 0.5*applied_load;
+        const double u_x_values_left = -0.5*applied_load;
+
+        VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                    0,
+                                                    Functions::ConstantFunction&ltdim&gt (u_x_values_left, dim),
+                                                    constraints_elastic, 
+                                                    u_x_mask);
+        VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                    1,
+                                                    Functions::ConstantFunction&ltdim&gt (u_x_values_right, dim),
+                                                    constraints_elastic, 
+                                                    u_x_mask);
+        constraints_elastic.close (); */  
+        
+        constraints_elastic.clear ();
+        constraints_elastic.reinit (locally_relevant_dofs_elastic);
+
+        DoFTools::make_hanging_node_constraints (dof_handler_elastic,
+            constraints_elastic);
+
+        /* for (const auto &cell : dof_handler_elastic.active_cell_iterators ())
+        if (cell-&gtis_locally_owned ())
+            {
+            for (const auto &face : cell-&gtface_iterators ())
+                {
+                if (face-&gtat_boundary ())
+                    {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center (0) - Domain::x_min) &lt 1e-12) //face lies at x=x_min
+                        {
+
+                        for (const auto vertex_number : cell-&gtvertex_indices ())
+                            {
+                            const auto vert = cell-&gtvertex (vertex_number);
+                            const double z_mid = 0.5 * (Domain::z_max + Domain::z_min);
+                            if (std::fabs (vert (2) - z_mid) &lt 1e-12 && 
+                                std::fabs (vert (0) - Domain::x_min) &lt 1e-12) // vertex at x=x_min,z=z_mid;
+                                {
+                                const unsigned int z_dof =
+                                    cell-&gtvertex_dof_index (vertex_number, 2);
+                                constraints_elastic.add_line (z_dof);
+                                constraints_elastic.set_inhomogeneity (z_dof, 0);
+                                const unsigned int x_dof =
+                                    cell-&gtvertex_dof_index (vertex_number, 0);
+                                constraints_elastic.add_line (x_dof);
+                                constraints_elastic.set_inhomogeneity (x_dof, 0);
+                                }
+                            else if (std::fabs (vert (0) - Domain::x_min) &lt 1e-12) // vertex at x_min
+
+                                {
+                                const unsigned int x_dof =
+                                    cell-&gtvertex_dof_index (vertex_number, 0);
+                                constraints_elastic.add_line (x_dof);
+                                constraints_elastic.set_inhomogeneity (x_dof, 0);
+                                }
+                            }
+                        }
+                    }
+                }
+            } */
+
+        const FEValuesExtractors::Scalar u_x (0);
+        const FEValuesExtractors::Scalar u_y (1);
+
+        const ComponentMask u_x_mask = fe_elastic.component_mask (u_x);
+        const ComponentMask u_y_mask = fe_elastic.component_mask (u_y);
+
+        applied_load = load_increment*load_step;
+        const double u_x_values_right = 0.5*applied_load;
+        const double u_x_values_left = -0.5*applied_load;
+
+        /* const double u_x_values_right = ux * load_step;
+        const double u_y_values = uy * load_step; */
+        const double u_fix = 0.0;
+
+        VectorTools::interpolate_boundary_values (dof_handler_elastic, 0,
+            Functions::ConstantFunction&ltdim&gt (u_x_values_left, dim),
+            constraints_elastic, u_x_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler_elastic, 0,
+            Functions::ConstantFunction&ltdim&gt (u_fix, dim), constraints_elastic,
+            u_y_mask);
+
+        VectorTools::interpolate_boundary_values (dof_handler_elastic, 1,
+            Functions::ConstantFunction&ltdim&gt (u_x_values_right, dim), constraints_elastic,
+            u_x_mask);
+
+        constraints_elastic.close ();
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_elasticity(const unsigned int load_step)
+    {
+        TimerOutput::Scope ts(computing_timer, "setup_system_elastic");
+        // Initialize the dofs contained locally as well as those of the near cells
+        locally_owned_dofs_elastic = dof_handler_elastic.locally_owned_dofs ();
+        locally_relevant_dofs_elastic = DoFTools::extract_locally_relevant_dofs (dof_handler_elastic);
+        locally_relevant_solution_elastic.reinit (locally_owned_dofs_elastic,
+                                                  locally_relevant_dofs_elastic,
+                                                  mpi_communicator);
+
+        // Initialize the contraints objects for BC and Hanging Nodes during refinement
+        system_rhs_elastic.reinit (locally_owned_dofs_elastic, mpi_communicator);
+
+        completely_distributed_solution_elastic.reinit (locally_owned_dofs_elastic,
+                                                        mpi_communicator);
+        newton_update_solution_elastic.reinit(locally_owned_dofs_elastic,
+                                                mpi_communicator);
+
+        setup_constraints_elastic (load_step);  // Qui unizializzo gli hanging nodes constrains (e le BC volendo)
+        
+        // Sparsity pattern initialization (where matrix has nonzero entries)
+        DynamicSparsityPattern dsp(locally_relevant_dofs_elastic);
+        DoFTools::make_sparsity_pattern (dof_handler_elastic,
+                                         dsp, 
+                                         constraints_elastic, 
+                                         false);
+        SparsityTools::distribute_sparsity_pattern (dsp,
+                                                    dof_handler_elastic.locally_owned_dofs (),
+                                                    mpi_communicator,
+                                                    locally_relevant_dofs_elastic);
+        
+        // Elasticity Matrix
+        system_matrix_elastic.reinit (locally_owned_dofs_elastic,
+                                      locally_owned_dofs_elastic, 
+                                      dsp, 
+                                      mpi_communicator);
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::assemble_elasticity(const unsigned int load_step, const bool flag_iter)
+    {
+        TimerOutput::Scope ts (computing_timer, "assembly_elastic");
+
+        // Clean the current matrices 
+        system_rhs_elastic = 0;
+        system_matrix_elastic = 0;
+
+        // Initialize the FEValues Objects
+        FEValues&ltdim&gt fe_values_elastic (fe_elastic, quadrature_formula_elastic,
+                                        update_values | update_gradients |
+                                        update_quadrature_points | update_JxW_values);
+
+        FEValues&ltdim&gt fe_values_damage (fe_damage, quadrature_formula_elastic,
+                                     update_values | update_gradients |
+                                     update_quadrature_points | update_JxW_values);
+
+        // Number of DoFs and Gauss points per cell
+        const unsigned int dofs_per_cell = fe_elastic.n_dofs_per_cell ();
+        const unsigned int n_q_points = quadrature_formula_elastic.size ();
+
+        // Local Matrices and Vector
+        FullMatrix&ltdouble&gt cell_matrix_elastic (dofs_per_cell, dofs_per_cell);
+        Vector&ltdouble&gt cell_rhs_elastic (dofs_per_cell);
+
+        // Create vector to store the local dof indices
+        std::vector&lttypes::global_dof_index&gt local_dof_indices (dofs_per_cell);
+
+        std::vector&ltdouble&gt damage_values (n_q_points);
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_values (n_q_points);
+
+        // loop over the cells
+        for (const auto &cell : dof_handler_elastic.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                // Reset the local matrix/rhs of the cell
+                cell_matrix_elastic = 0;
+                cell_rhs_elastic = 0;
+
+                const typename DoFHandler&ltdim&gt::active_cell_iterator damage_cell = cell-&gtas_dof_handler_iterator(dof_handler_damage);
+                // const DoFHandler&ltdim&gt::active_cell_iterator damage_cell = Triangulation&ltdim&gt::active_cell_iterator (cell)-&gtas_dof_handler_iterator (dof_handler_damage);
+ 
+                fe_values_elastic.reinit (cell);
+                fe_values_damage.reinit (damage_cell);
+ 
+                const FEValuesExtractors::Vector displacements (/* first vector component = */0);
+                fe_values_elastic[displacements].get_function_symmetric_gradients (locally_relevant_solution_elastic, strain_values);
+                fe_values_damage.get_function_values(locally_relevant_solution_damage, damage_values);
+                
+                // loop over the gauss point of the cell
+                for (const unsigned int q_point : fe_values_elastic.quadrature_point_indices ())
+                {
+                    // Estraggo i valori relevant sui punti di gauss
+                    const double d = damage_values[q_point];
+                    
+                    for (const unsigned int i : fe_values_elastic.dof_indices ())
+                    {
+                        const unsigned int component_i = fe_elastic.system_to_component_index (i).first;
+
+                        for (const unsigned int j : fe_values_elastic.dof_indices ())
+                        {
+                            const unsigned int component_j = fe_elastic.system_to_component_index (j).first;
+                            cell_matrix_elastic (i, j) += (std::pow((1 - d), 2) + k_res)
+                                                            * ((fe_values_elastic.shape_grad (i, q_point)[component_i] * lambda (E, nu) *
+                                                            fe_values_elastic.shape_grad (j, q_point)[component_j])
+                                                            +
+                                                            (fe_values_elastic.shape_grad (i, q_point)[component_j] * mu (E, nu) *
+                                                            fe_values_elastic.shape_grad (j, q_point)[component_i])
+                                                            +
+                                                            ((component_i == component_j) ? (fe_values_elastic.shape_grad (i, q_point) *  mu (E, nu) *
+                                                                                            fe_values_elastic.shape_grad (j, q_point)) 
+                                                                                            : 0)                              
+                                                            ) * fe_values_elastic.JxW (q_point); //
+                        }
+                        
+                        cell_rhs_elastic (i) += fe_values_elastic.shape_value (i, q_point) * 0 * fe_values_elastic.JxW (q_point);
+                    
+                    }
+                }
+                cell-&gtget_dof_indices (local_dof_indices);
+                constraints_elastic.distribute_local_to_global (cell_matrix_elastic,
+                                                                cell_rhs_elastic, 
+                                                                local_dof_indices, 
+                                                                system_matrix_elastic,
+                                                                system_rhs_elastic);
+            }
+        }
+        system_matrix_elastic.compress (VectorOperation::add);
+        system_rhs_elastic.compress (VectorOperation::add);
+
+        /* // Now set BC
+        const FEValuesExtractors::Scalar u_x (0);
+        const FEValuesExtractors::Scalar u_y (1);
+        const FEValuesExtractors::Scalar u_z (2);
+        
+        const ComponentMask u_x_mask = fe_elastic.component_mask (u_x);
+        const ComponentMask u_y_mask = fe_elastic.component_mask (u_y);
+        const ComponentMask u_z_mask = fe_elastic.component_mask (u_z);
+
+        applied_load = load_increment*load_step;
+        const double u_x_values_right = 0.5*applied_load;
+        const double u_x_values_left = -0.5*applied_load;
+        
+        std::map&lttypes::global_dof_index, double&gt boundary_values;
+        Point&ltdim&gt point_one, point_two;
+        point_one(0) = 0.5*L;
+        point_one(1) = 0.;
+        point_one(2) = 0.;
+        point_two(0) = 0.5*L;
+        point_two(1) = H;
+        point_two(2) = 0.;
+
+        typename DoFHandler&ltdim&gt::active_cell_iterator cell = dof_handler_elastic.begin_active(),
+                                                     endc = dof_handler_elastic.end(); */
+
+        /* // Set up Punctual BC
+        bool evaluation_point_found = false;
+        for (; (cell!=endc) && !evaluation_point_found; ++cell)
+        {
+            if (cell-&gtis_locally_owned())
+            {
+                for (unsigned int vertex=0; vertex&ltGeometryInfo&ltdim&gt::vertices_per_cell; ++vertex)
+                {
+                    if (cell-&gtvertex(vertex).distance (point_one) &lt cell-&gtdiameter() * 1e-12)
+                    {   // Block displacement on the mid point at y = 0 
+                        boundary_values[cell-&gtvertex_dof_index(vertex,0)]=0.;
+                        boundary_values[cell-&gtvertex_dof_index(vertex,1)]=0.;
+                        boundary_values[cell-&gtvertex_dof_index(vertex,2)]=0.;
+                        evaluation_point_found = true;
+                    }
+                    if (cell-&gtvertex(vertex).distance (point_two) &lt	cell-&gtdiameter() * 1e-12)
+                    {   // Block only ux, uz at midpoint at y = H
+                        boundary_values[cell-&gtvertex_dof_index(vertex,0)]=0.;
+                        boundary_values[cell-&gtvertex_dof_index(vertex,2)]=0.;
+                        evaluation_point_found = true;
+                    }
+                }
+            }
+        } */
+
+        // Set the displacement on the left face
+        /* if (flag_iter == true)
+        {
+            VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                        0,
+                                                        Functions::ConstantFunction&ltdim&gt (u_x_values_left, dim),
+                                                        boundary_values, 
+                                                        u_x_mask);
+            VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                        1,
+                                                        Functions::ConstantFunction&ltdim&gt (u_x_values_right, dim),
+                                                        boundary_values, 
+                                                        u_x_mask);
+        } else
+        {
+            VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                        0,
+                                                        Functions::ConstantFunction&ltdim&gt (0., dim),
+                                                        boundary_values, 
+                                                        u_x_mask);
+            VectorTools::interpolate_boundary_values (dof_handler_elastic, 
+                                                        1,
+                                                        Functions::ConstantFunction&ltdim&gt (0., dim),
+                                                        boundary_values, 
+                                                        u_x_mask);
+        }
+            
+        PETScWrappers::MPI::Vector tmp(locally_owned_dofs_elastic, mpi_communicator);
+        MatrixTools::apply_boundary_values(boundary_values, system_matrix_elastic, tmp, system_rhs_elastic, false);       
+        if (flag_iter == true)
+            completely_distributed_solution_elastic = tmp;
+        else
+            newton_update_solution_elastic = tmp; */
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::solve_linear_problem(const bool solve_step)
+    {
+        TimerOutput::Scope ts (computing_timer, "solve_linear_system_elastic");
+        // CG
+        SolverControl solver_control (10000, 1e-12* system_rhs_elastic.l2_norm());
+        SolverCG&ltPETScWrappers::MPI::Vector&gt solver (solver_control);
+
+        /* PETScWrappers::PreconditionBoomerAMG::AdditionalData data;
+        PETScWrappers::PreconditionBoomerAMG preconditioner;
+        preconditioner.initialize (system_matrix_elastic, data); */
+        
+        PETScWrappers::PreconditionBlockJacobi preconditioner(system_matrix_elastic);
+
+        solver.solve (system_matrix_elastic,
+                      completely_distributed_solution_elastic,
+                      system_rhs_elastic,
+                      preconditioner);
+    
+        pcout &lt&lt "   Solved in " &lt&lt solver_control.last_step () &lt&lt " iterations." &lt&lt std::endl;
+    
+        constraints_elastic.distribute (completely_distributed_solution_elastic);
+        locally_relevant_solution_elastic = completely_distributed_solution_elastic;
+    }
+
+    // -----------------------------
+    // ---------- DAMAGE -----------
+    // -----------------------------
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_constraints_alpha()
+    {
+        constraints_damage.clear ();
+        constraints_damage.reinit (locally_relevant_dofs_damage);
+        DoFTools::make_hanging_node_constraints (dof_handler_damage, constraints_damage);    
+        constraints_damage.close ();
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::setup_system_alpha()
+    {
+        TimerOutput::Scope ts (computing_timer, "setup_system_damage");
+
+        locally_owned_dofs_damage = dof_handler_damage.locally_owned_dofs ();
+        locally_relevant_dofs_damage = DoFTools::extract_locally_relevant_dofs (dof_handler_damage);
+
+        locally_relevant_solution_damage.reinit (locally_owned_dofs_damage, 
+                                                locally_relevant_dofs_damage,
+                                                mpi_communicator);
+        locally_damageLB.reinit (locally_owned_dofs_damage, 
+                                locally_relevant_dofs_damage,
+                                mpi_communicator);
+
+        system_rhs_damage.reinit (locally_owned_dofs_damage, mpi_communicator);
+        
+        completely_distributed_solution_damage.reinit (locally_owned_dofs_damage, mpi_communicator);      
+        completely_distributed_damageLB.reinit (locally_owned_dofs_damage, mpi_communicator);
+        completely_distributed_damageLB = completely_distributed_damageLB_old;
+        completely_distributed_damageUB.reinit (locally_owned_dofs_damage, mpi_communicator);
+        completely_distributed_damageUB = 1;
+        
+        DynamicSparsityPattern dsp (locally_relevant_dofs_damage);
+        DoFTools::make_sparsity_pattern (dof_handler_damage,
+                                         dsp,
+                                         constraints_damage,
+                                         false);
+
+        SparsityTools::distribute_sparsity_pattern (dsp, dof_handler_damage.locally_owned_dofs (),
+                                                    mpi_communicator, locally_relevant_dofs_damage);
+
+        system_matrix_damage.reinit (locally_owned_dofs_damage,
+                                     locally_owned_dofs_damage,
+                                     dsp, mpi_communicator);
+    }
+
+    template&ltint dim&gt
+    void Elasticity&ltdim&gt::assemble_system_alpha(PETScWrappers::MPI::Vector &present_solution_alpha, PETScWrappers::MPI::Vector &system_rhs_alpha)
+    {
+        TimerOutput::Scope ts (computing_timer, "assembly_elastic");
+        
+        // Clean the current matrices 
+        system_rhs_damage = 0;
+        system_matrix_damage = 0;
+
+        FEValues&ltdim&gt fe_values_damage (fe_damage, quadrature_formula_damage,
+                                      update_values | update_gradients | 
+                                      update_JxW_values | update_quadrature_points);
+        
+        FEValues&ltdim&gt fe_values_elastic (fe_elastic, quadrature_formula_damage,
+                                       update_values | update_gradients | 
+                                       update_JxW_values | update_quadrature_points);
+
+        const unsigned int dofs_per_cell = fe_damage.n_dofs_per_cell ();
+        const unsigned int n_q_points = quadrature_formula_damage.size ();
+
+        FullMatrix&ltdouble&gt cell_matrix_damage (dofs_per_cell, dofs_per_cell);
+        Vector&ltdouble&gt cell_rhs_damage (dofs_per_cell);
+
+        std::vector&lttypes::global_dof_index&gt local_dof_indices (dofs_per_cell);
+
+        std::vector&ltSymmetricTensor&lt2, dim&gt&gt strain_values (n_q_points);
+        std::vector&ltdouble&gt local_solution_alpha(n_q_points);
+        std::vector&ltTensor&lt1, dim&gt&gt local_grad_alpha (n_q_points);
+
+        for (const auto &cell : dof_handler_damage.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                // Clear degli elementi locali
+                cell_matrix_damage = 0;
+                cell_rhs_damage = 0;
+
+                // Inizializzo i fe_values sulla cella
+                fe_values_damage.reinit (cell);
+                const typename DoFHandler&ltdim&gt::active_cell_iterator elastic_cell = cell-&gtas_dof_handler_iterator(dof_handler_elastic);
+                // const DoFHandler&ltdim&gt::active_cell_iterator elastic_cell = Triangulation&ltdim&gt::active_cell_iterator (cell)-&gtas_dof_handler_iterator (dof_handler_elastic);
+                fe_values_elastic.reinit (elastic_cell);
+                
+                // Estraggo valori danno ed elasticità
+                fe_values_damage.get_function_values(locally_relevant_solution_damage, local_solution_alpha);
+                fe_values_damage.get_function_gradients(locally_relevant_solution_damage, local_grad_alpha);
+
+                const FEValuesExtractors::Vector displacements (/* first vector component = */0);
+                fe_values_elastic[displacements].get_function_symmetric_gradients (locally_relevant_solution_elastic, strain_values);
+
+                // Loop sui punti di gauss
+                for (const unsigned int q_index : fe_values_damage.quadrature_point_indices ())
+                {
+                    // Estraggo i valori relevant sui punti di gauss
+                    const SymmetricTensor&lt2,dim&gt eps_u = strain_values[q_index];
+
+                    double elastic_source=0.;
+                    elastic_source = 0.5* eps_u * stress_strain_tensor * eps_u;
+                    
+                    const auto &x_q = fe_values_damage.quadrature_point (q_index);
+                    double Gc_dmg = gc(Gc, 0.95, 0.495, 0.505, x_q);
+                    
+                    for (unsigned int i=0; i&ltdofs_per_cell; ++i)
+                    {
+                        for (unsigned int j=0; j&ltdofs_per_cell; ++j)
+                        {
+                            cell_matrix_damage(i,j)+= (fe_values_damage.shape_grad(i,q_index) *
+                                                fe_values_damage.shape_grad(j,q_index) *
+                                                (2.*Gc_dmg*ell/c_w)
+                                                +
+                                                fe_values_damage.shape_value(i,q_index)  *
+                                                fe_values_damage.shape_value(j,q_index)  *
+                                                (Gc_dmg/(ell*c_w)*w_second_alpha() + g_second_alpha()*elastic_source))
+                                                * fe_values_damage.JxW(q_index);
+                        }
+
+                        cell_rhs_damage(i) += (g_prime_alpha(local_solution_alpha[q_index])*elastic_source+
+                                        w_prime_alpha(local_solution_alpha[q_index])*Gc_dmg/(ell*c_w))  *   
+                                        fe_values_damage.shape_value(i,q_index) *
+                                        fe_values_damage.JxW(q_index);
+
+                        cell_rhs_damage(i) += (local_grad_alpha[q_index]*2.*Gc_dmg*ell/c_w) *
+                                        fe_values_damage.shape_grad(i,q_index) *
+                                        fe_values_damage.JxW(q_index);
+                    }
+                }
+                cell-&gtget_dof_indices(local_dof_indices);
+                constraints_damage.distribute_local_to_global (cell_matrix_damage,
+                                                               cell_rhs_damage,
+                                                               local_dof_indices, 
+                                                               system_matrix_damage,
+                                                               system_rhs_damage);
+            }
+        }
+        system_matrix_damage.compress (VectorOperation::add);
+        system_rhs_damage.compress (VectorOperation::add);
+
+        // Set BC on damage
+        std::map&lttypes::global_dof_index, double&gt boundary_values;
+
+        VectorTools::interpolate_boundary_values(dof_handler_damage,
+                                                0,
+                                                Functions::ZeroFunction&ltdim&gt(),
+                                                boundary_values);
+
+        VectorTools::interpolate_boundary_values(dof_handler_damage,
+                                                1,
+                                                Functions::ZeroFunction&ltdim&gt(),
+                                                boundary_values);
+
+        // Qui riuso il vettore petsc MPI cosi da applicarci le BC
+        PETScWrappers::MPI::Vector tmp(locally_owned_dofs_damage, mpi_communicator);
+        MatrixTools::apply_boundary_values(boundary_values, system_matrix_damage, tmp, system_rhs_damage, false);
+        completely_distributed_solution_damage = tmp;
+    }
+
+    // Function used to create the FormFunction Input for the SNESSetFunction
+    template &ltint dim&gt
+    PetscErrorCode Elasticity&ltdim&gt::FormFunction(SNES snes, Vec x, Vec f, void* ctx)
+    {
+        const auto p_ctx = static_cast&ltElasticity*&gt(ctx);
+        p_ctx-&gtassemble_system_alpha(p_ctx-&gtcompletely_distributed_solution_damage, p_ctx-&gtsystem_rhs_damage);
+        return 0;
+    }
+
+    // Function used to create the FormFunction Input for the SNESSetJacobian
+    template &ltint dim&gt
+    PetscErrorCode Elasticity&ltdim&gt::FormJacobian(SNES snes, Vec x, Mat jac, Mat B, void* ctx)
+    {
+        const auto p_ctx = static_cast&ltElasticity*&gt(ctx);
+        p_ctx-&gtsystem_matrix_damage;
+
+        return 0;
+    }
+
+    // -----------------------------
+    // ---------- OUTPUT -----------
+    // -----------------------------
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::output_results (const unsigned int load_step) const
+    {
+        std::vector&ltstd::string&gt displacement_names (dim, "displacement");
+        std::vector&ltDataComponentInterpretation::DataComponentInterpretation&gt displacement_component_interpretation (dim, DataComponentInterpretation::component_is_part_of_vector);
+
+        DataOut&ltdim&gt data_out_phasefield;
+        data_out_phasefield.add_data_vector (dof_handler_elastic,
+                                             locally_relevant_solution_elastic,
+                                             displacement_names,
+                                             displacement_component_interpretation);
+
+        data_out_phasefield.add_data_vector (dof_handler_damage,
+                                             locally_relevant_solution_damage, "damage");
+
+        Vector&ltdouble&gt subdomain (triangulation.n_active_cells ());
+        for (unsigned int i = 0; i &lt subdomain.size (); ++i)
+        {
+            subdomain (i) = triangulation.locally_owned_subdomain ();
+        }
+
+        data_out_phasefield.add_data_vector (subdomain, "subdomain");
+        data_out_phasefield.build_patches ();
+        const std::string pvtu_filename = data_out_phasefield.write_vtu_with_pvtu_record ("./", "solution", load_step, mpi_communicator, 2, 0);
+
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.push_back(std::pair&ltdouble, std::string&gt(load_step, pvtu_filename));
+            std::ofstream pvd_output("./solution_u.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+
+    // -----------------------------
+    // ----------- RUN -------------
+    // -----------------------------
+    template &ltint dim&gt
+    void Elasticity&ltdim&gt::run()
+    {
+        Timer timer;
+        timer.start ();
+        pcout &lt&lt "Running on " &lt&lt Utilities::MPI::n_mpi_processes (mpi_communicator) &lt&lt " MPI rank(s)..." &lt&lt std::endl;
+
+        create_mesh();
+
+        // Loop over load steps
+        for (unsigned int load_step = 0; load_step &lt= num_load_steps; load_step++)
+        {
+            pcout &lt&lt " --- Load increment number : " &lt&lt load_step &lt&lt std::endl;
+            
+            double error_alternate = 1.0;
+            const double error_toll = 1.e-5;
+            unsigned int iter_counter_am = 0;
+            const unsigned int max_iteration = 500;
+            
+            double  error_elastic;
+            const double error_toll_elastic=1.e-6;
+            unsigned int iter_elastic;
+            const unsigned int max_iteration_elastic = 10;
+            bool solve_step;
+
+            // Alternate Minimization
+            while (error_alternate &gt error_toll && iter_counter_am &ltmax_iteration)
+            {
+                pcout &lt&lt " ------ Alternate minimization: " &lt&lt iter_counter_am &lt&lt std::endl;
+                
+                // --- Elasticity problem
+                pcout &lt&lt "    --- Solving Elastic problem..." &lt&lt std::endl;
+                iter_elastic = 0;
+                solve_step = true;
+
+                setup_elasticity (load_step);
+                assemble_elasticity (load_step, solve_step);
+                solve_linear_problem (solve_step);
+
+                // Damage problem
+                pcout &lt&lt "    --- Solving Damage problem..." &lt&lt std::endl;
+                setup_constraints_alpha();
+                setup_system_alpha();
+                
+                // Solve with SNES
+                SNES snes;
+                PetscErrorCode ierr;
+                ierr = SNESCreate(mpi_communicator, &snes);
+                ierr = SNESSetType(snes, SNESVINEWTONRSLS);
+                ierr = SNESSetFunction(snes, system_rhs_damage, FormFunction, this);
+                ierr = SNESSetJacobian(snes, system_matrix_damage, system_matrix_damage, FormJacobian, this);
+                ierr = SNESVISetVariableBounds(snes, completely_distributed_damageLB, completely_distributed_damageUB);
+                ierr = SNESSetFromOptions(snes);
+                ierr = SNESSolve(snes, nullptr, completely_distributed_solution_damage);
+                ierr = SNESDestroy(&snes);
+                // End SNES 
+
+                constraints_damage.distribute(completely_distributed_solution_damage);
+                locally_relevant_solution_damage = completely_distributed_solution_damage;
+                
+                // Update ghost values after the solution
+                locally_relevant_solution_elastic.update_ghost_values();
+                locally_relevant_solution_damage.update_ghost_values();
+                
+                // Check convergence
+                PETScWrappers::MPI::Vector temp_damage(locally_owned_dofs_damage, mpi_communicator);
+                temp_damage = locally_relevant_solution_damage;
+                temp_damage -= completely_distributed_solution_damage_old;
+                error_alternate =  temp_damage.linfty_norm();
+
+                pcout &lt&lt " Number of iteration: " &lt&lt iter_counter_am &lt&lt std::endl;
+                pcout &lt&lt " Error_on_alpha:  " &lt&lt error_alternate &lt&lt std::endl;
+                pcout &lt&lt " Alpha_max:  " &lt&lt completely_distributed_solution_damage.linfty_norm() &lt&lt std::endl;
+
+                // Prepare for refinement
+                completely_distributed_solution_elastic_old = locally_relevant_solution_elastic;
+                completely_distributed_solution_damage_old = locally_relevant_solution_damage;
+
+                if (error_alternate &gt error_toll)
+                {
+                    refine_mesh(load_step);
+                    pcout &lt&lt "  Total New Number of globally active cells:       "  &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+                          &lt&lt "   New Number of degrees of freedom for elasticity: " &lt&lt dof_handler_elastic.n_dofs () &lt&lt std::endl;
+                }
+
+                output_results (load_step*100 + iter_counter_am);
+                iter_counter_am++;                
+            }
+
+            completely_distributed_damageLB = completely_distributed_solution_damage;
+            completely_distributed_damageLB_old = completely_distributed_solution_damage;
+
+            output_results (load_step*100+max_iteration);
+
+            computing_timer.print_summary ();
+            computing_timer.reset ();
+            pcout &lt&lt std::endl;
+        }
+        timer.stop ();
+        pcout &lt&lt "Total run time: " &lt&lt timer.wall_time () &lt&lt " seconds." &lt&lt std::endl;
+    }
+} // End of namespace Elasticity
+
+// -----------------------------
+// ---------- MAIIN ------------
+// -----------------------------
+int main (int argc, char *argv[])
+{
+    try
+    {
+        using namespace dealii;
+        using namespace elas;
+
+        Utilities::MPI::MPI_InitFinalize mpi_initialization (argc, argv, 1);
+
+        Elasticity&lt2&gt elasticity;
+        elasticity.run ();
+    }
+    catch (std::exception &exc)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Exception on processing: " &lt&lt std::endl &lt&lt exc.what ()
+        &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Unknown exception!" &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
 </section>
 
 <!-- Aggiungi il tasto per tornare alla prima pagina -->

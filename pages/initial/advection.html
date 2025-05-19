@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Advection Equation
+title: Advection-Diffusion
 ---
 <html lang="en">
 <head>
@@ -19,52 +19,704 @@ title: Advection Equation
         <li><a href="#section2">Theory</a></li>
         <li><a href="#section3">Implementation</a></li>
         <li><a href="#section4">Results</a></li>
+        <li><a href="#section5">Complete Code</a></li>
     </ul>
 </div>
 
 <!-- Main Content -->
-<h1>Here is the basic demo for the Advection problem</h1>
-<p>Put some text and code here.</p>
+<h1>Advection-Diffusion</h1>
 
 <section id="section1">
     <h2>Introduction</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>This tutorial provides a step-by-step guide for implementing a Advection-Diffusion problem using the Finite Element Method (FEM) in the deal.II library. 
+        We will focus on setting up the weak form of the equations, assembling the finite element system, applying appropriate boundary conditions, and solving the resulting linear system. 
+        This tutorial assumes familiarity with basic FEM concepts and provides a practical foundation for more advanced developments within the deal.II framework.
     </p>
 </section>
 
 <section id="section2">
     <h2>Theory</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>TBA
     </p>
 </section>
 
 <section id="section3">
     <h2>Implementation</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>Code Implementation Brekdown TBA
     </p>
 </section>
 
 <section id="section4">
     <h2>Results</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elementum dolor quis ante congue efficitur. Nulla bibendum mi vitae odio scelerisque, sit amet euismod justo tempor. Mauris ut arcu quis felis blandit semper. Quisque varius libero vel sapien ullamcorper tincidunt. Vestibulum posuere scelerisque pulvinar. In convallis mi eget tellus vehicula, nec interdum tellus lobortis. Mauris sollicitudin tortor id quam maximus, id mattis massa vehicula.
-        In hac habitasse platea dictumst. Nam velit eros, luctus eu erat vel, aliquam consectetur metus. Vestibulum pretium, felis eu commodo sollicitudin, nunc turpis maximus ligula, at placerat urna metus ut mauris. Curabitur et luctus nisi, vel hendrerit tortor. Sed congue, lorem non sagittis venenatis, nisl ligula aliquam arcu, venenatis luctus nunc mi non magna. Cras at placerat erat. Proin vitae imperdiet massa, vel suscipit lorem. Proin ultricies, massa non laoreet fringilla, purus enim congue felis, a porta lectus felis et augue. Aenean aliquam lorem eget augue semper, vitae ultricies eros vestibulum. Nam vehicula mattis quam. Nam consectetur ultrices convallis. Fusce eget lorem id arcu semper efficitur id nec erat. Nulla quis dui congue, accumsan enim vel, venenatis dui. Aenean at augue tellus.
-        Vivamus vulputate leo quam, vitae vehicula nunc gravida id. Vestibulum malesuada aliquam lobortis. Integer tortor risus, aliquam vitae congue consectetur, efficitur at nibh. Etiam finibus egestas leo, eget lacinia augue imperdiet at. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla pharetra rutrum nibh. Aenean eget dapibus nisl. Donec at lobortis nulla. Aenean pharetra suscipit felis vel pretium. Mauris quis metus posuere, ultricies nibh et, iaculis est. Proin ante magna, fringilla non lectus ut, placerat viverra elit. Praesent egestas sem id nibh egestas pharetra. Fusce porta nulla et sem interdum aliquet.        
-        In hac habitasse platea dictumst. Vestibulum nec tellus odio. Maecenas et nunc eget mi varius mollis non quis erat. Sed quis sagittis turpis, non accumsan eros. Donec eu ultrices libero. Suspendisse potenti. In suscipit blandit dolor, at bibendum sapien hendrerit eget. Sed ac ex nec sapien egestas tempus sit amet vel diam. Sed imperdiet nunc ut molestie pellentesque. Aenean non urna sit amet odio luctus eleifend. Vestibulum scelerisque fermentum ante, nec consequat ligula cursus consequat. Mauris turpis lorem, volutpat sit amet lectus in, laoreet congue mauris. Vestibulum at ipsum efficitur nisl porta blandit. Mauris dapibus sem quis commodo pulvinar.        
-        Nam eu quam lorem. Pellentesque feugiat mollis sodales. Sed tempor mi quis dolor feugiat finibus. Maecenas cursus rutrum erat, feugiat consectetur velit fermentum vel. Aenean commodo elit velit, eget fringilla odio volutpat id. Nulla mollis elit nulla, quis finibus velit interdum eget. Curabitur et magna id lorem ullamcorper imperdiet. Curabitur vitae eros id nibh sagittis posuere. Curabitur in ex id mauris eleifend suscipit ut ut odio. Nulla facilisi. Donec sit amet rhoncus dui, sit amet finibus diam. Pellentesque aliquam, dui id dapibus efficitur, nisi diam laoreet tortor, eget fringilla dui diam id nulla.
+    <p>Results for various Advection-Diffusion constants TBA
     </p>
 </section>
 
+<section id="section5"></section>
+    <h2>Complete code</h2>
+
+    <div class="code-box">
+        <pre>
+#include &ltdeal.II/base/quadrature_lib.h&gt
+#include &ltdeal.II/base/function.h&gt
+#include &ltdeal.II/base/timer.h&gt
+#include &ltdeal.II/lac/generic_linear_algebra.h&gt
+#include &ltdeal.II/lac/vector.h&gt
+#include &ltdeal.II/lac/full_matrix.h&gt
+#include &ltdeal.II/lac/precondition.h&gt
+#include &ltdeal.II/lac/petsc_precondition.h&gt
+#include &ltdeal.II/lac/affine_constraints.h&gt
+#include &ltdeal.II/lac/dynamic_sparsity_pattern.h&gt
+#include &ltdeal.II/lac/solver_gmres.h&gt
+#include &ltdeal.II/grid/grid_generator.h&gt
+#include &ltdeal.II/dofs/dof_handler.h&gt
+#include &ltdeal.II/dofs/dof_tools.h&gt
+#include &ltdeal.II/dofs/dof_accessor.h&gt
+#include &ltdeal.II/grid/tria_accessor.h&gt
+#include &ltdeal.II/fe/fe_values.h&gt
+#include &ltdeal.II/fe/fe_system.h&gt
+#include &ltdeal.II/fe/fe_q.h&gt
+#include &ltdeal.II/grid/grid_refinement.h&gt
+#include &ltdeal.II/numerics/vector_tools.h&gt
+#include &ltdeal.II/numerics/matrix_tools.h&gt
+#include &ltdeal.II/numerics/data_out.h&gt
+#include &ltdeal.II/numerics/error_estimator.h&gt
+#include &ltdeal.II/base/utilities.h&gt
+#include &ltdeal.II/base/conditional_ostream.h&gt
+#include &ltdeal.II/base/index_set.h&gt
+#include &ltdeal.II/lac/sparsity_tools.h&gt
+#include &ltdeal.II/distributed/tria.h&gt
+#include &ltdeal.II/distributed/grid_refinement.h&gt
+#include &ltdeal.II/distributed/solution_transfer.h&gt
+#include &ltdeal.II/base/quadrature_point_data.h&gt
+#include &ltdeal.II/base/tensor_function.h&gt
+#include &ltfstream&gt
+#include &ltiostream&gt
+#include &ltrandom&gt
+
+namespace diff
+{
+    using namespace dealii;
+    
+    template &ltint dim&gt
+    class Advection
+    {
+        public:
+            Advection();
+            void run();
+
+        private:
+            // Mesh generation and refinement
+            void create_mesh();
+            void refine_mesh();
+
+            // Advection problem functions
+            void set_initial_data();
+            
+            void setup_constraints ();     // Posso creare funz che applica BC o mettere a fine assembly matrix
+            void setup();
+            
+            void assemble(unsigned int current_timestep);
+            void solve_linear_problem();
+
+            // Save the results - Disp, stress, reaction, energies
+            void output_results(const unsigned int time) const;
+            
+            // Parallel setup and print on screen
+            MPI_Comm mpi_communicator;
+            const unsigned int n_mpi_processes;
+            const unsigned int this_mpi_process;
+
+            parallel::distributed::Triangulation&ltdim&gt triangulation;
+
+            // Objects for Advection
+            const FESystem&ltdim&gt fe;                         // FE System
+            DoFHandler&ltdim&gt dof_handler;                    // DoF Handler
+
+            IndexSet locally_owned_dofs;                  // IndexSet - Locally Owned
+            IndexSet locally_relevant_dofs;               // IndexSet - Locally relevant 
+            AffineConstraints&ltdouble&gt constraints;        // Affine Constraint  
+
+            PETScWrappers::MPI::SparseMatrix system_matrix;           // Matrix
+            PETScWrappers::MPI::Vector system_rhs;                    // RHS 
+
+            PETScWrappers::MPI::Vector local_solution_C1;             // MPI Split solution
+            PETScWrappers::MPI::Vector local_solution_old_C1;         // MPI Split solution
+            PETScWrappers::MPI::Vector distributed_solution_C1;       // Full Solution
+            PETScWrappers::MPI::Vector distributed_old_C1;            // This is for the refinement
+
+            const QGauss&ltdim&gt quadrature_formula;          // Quadrature formula
+
+            // Domain dimensions
+            double L = 1;
+            double H = 0.1;
+            double W = 0.1;
+
+            const unsigned int nx = 30;
+            const unsigned int ny = 3;
+            const unsigned int nz = 3;
+
+            // Advection coefficient [m/s]
+            double velocity = 1;
+
+            // Advection coefficients [m^2/s]
+            double D = 1e-2;
+
+            // Initial concentrations [mol/m^3]
+            double C1_0 = 0;
+
+            // Time stepping [s]
+            double dt = 0.01;
+            double T_tot = 1;
+            const unsigned int n_steps = static_cast&ltunsigned int&gt(std::round(T_tot / dt));
+
+            ConditionalOStream pcout;
+            TimerOutput computing_timer;       
+    }; // End of diff class
+
+    // Constructor
+    template &ltint dim&gt
+    Advection&ltdim&gt::Advection()
+        : mpi_communicator(MPI_COMM_WORLD)
+        , n_mpi_processes(Utilities::MPI::n_mpi_processes(mpi_communicator))
+        , this_mpi_process(Utilities::MPI::this_mpi_process(mpi_communicator))
+        , triangulation (mpi_communicator)
+        , fe (FE_Q&ltdim&gt (1), 1)
+        , dof_handler (triangulation)
+        , quadrature_formula (fe.degree + 1)
+        , pcout (std::cout, this_mpi_process == 0)
+        , computing_timer (mpi_communicator, pcout, TimerOutput::never, TimerOutput::wall_times)
+    {}
+
+    // -----------------------------
+    // ----------- MESH ------------    
+    // -----------------------------
+    template &ltint dim&gt
+    void Advection&ltdim&gt::create_mesh()
+    {
+        // 1) Definisco la suddivisione in base a dim
+        std::vector&ltunsigned int&gt repetitions;
+        if constexpr (dim == 2)
+            repetitions = {nx, ny};
+        else // dim == 3
+            repetitions = {nx, ny, nz};
+
+        // 2) Crea la mesh
+        Point&ltdim&gt p1, p2;
+        if constexpr (dim == 2)
+        {
+            p1 = Point&ltdim&gt(0, 0);
+            p2 = Point&ltdim&gt(L, H);
+        }
+        else
+        {
+            p1 = Point&ltdim&gt(0, 0, 0);
+            p2 = Point&ltdim&gt(L, H, W);
+        }
+        GridGenerator::subdivided_hyper_rectangle(triangulation,
+                                                repetitions,
+                                                p1, p2);
+        // Set Fce IDs
+        for (const auto &cell : triangulation.active_cell_iterators ())
+        {
+            for (const auto &face : cell-&gtface_iterators ())
+            {
+                if (face-&gtat_boundary ())
+                {
+                    const auto center = face-&gtcenter ();
+                    if (std::fabs (center(0) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (0);
+
+                    else if (std::fabs (center(0) - L) &lt 1e-12)
+                        face-&gtset_boundary_id (1);
+
+                    else if (std::fabs (center(1) - 0) &lt 1e-12)
+                        face-&gtset_boundary_id (2);
+
+                    else if (std::fabs (center(1) - H) &lt 1e-12)
+                        face-&gtset_boundary_id (3);
+
+                        // Controlla se siamo in 3D prima di accedere a center(2)
+                    if constexpr (dim == 3)
+                    {
+                        if (std::fabs(center(2) - 0) &lt 1e-12)
+                            face-&gtset_boundary_id(4);
+                        else if (std::fabs(center(2) - W) &lt 1e-12)
+                            face-&gtset_boundary_id(5);
+                    }
+                }
+            }
+        }
+
+        // Initialize dof handler and extact Owned/Relevant DoFs
+        dof_handler.distribute_dofs (fe);
+        
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        // Initialize the old solution for updates purposes
+        local_solution_old_C1.reinit (locally_owned_dofs, locally_relevant_dofs, mpi_communicator);
+        
+        // Initialize the old solution for refinement purposes
+        distributed_old_C1.reinit (locally_owned_dofs, mpi_communicator);
+        
+        pcout &lt&lt "No. of levels in triangulation: " &lt&lt triangulation.n_global_levels () &lt&lt std::endl;
+        pcout &lt&lt "   Number of locally owned cells on the process:       " &lt&lt triangulation.n_locally_owned_active_cells () &lt&lt std::endl;
+        pcout &lt&lt "Number of global cells:" &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl;
+    
+        pcout &lt&lt "  Total Number of globally active cells:       "  &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+              &lt&lt "   Number of degrees of freedom for Advection: " &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+    }
+
+    template &ltint dim&gt
+    void Advection&ltdim&gt::refine_mesh()
+    {
+        // 1) Stima dell’errore su C2
+        Vector&ltfloat&gt estimated_error_per_cell(triangulation.n_locally_owned_active_cells());
+        KellyErrorEstimator&ltdim&gt::estimate(
+            dof_handler,
+            QGauss&ltdim-1&gt(fe.degree + 1),
+            std::map&lttypes::boundary_id, const Function&ltdim&gt*&gt(),
+            local_solution_C1,
+            estimated_error_per_cell);
+
+        // 2) Prepare il solution transfer (ghosted!)
+        parallel::distributed::SolutionTransfer&ltdim, PETScWrappers::MPI::Vector&gt soltransC1(dof_handler);
+        
+        // 3) Refinement/coarsening
+        parallel::distributed::GridRefinement::refine_and_coarsen_fixed_fraction(
+            triangulation, estimated_error_per_cell,
+            0.25, 0.1);
+
+        if (triangulation.n_global_levels() &gt= 4)
+        {
+            for (const auto &cell : triangulation.active_cell_iterators_on_level(3))
+                if (cell-&gtis_locally_owned())
+                    cell-&gtclear_refine_flag();
+        }
+
+        // 4) Esegui coarsening/refinement
+        triangulation.prepare_coarsening_and_refinement();
+        soltransC1.prepare_for_coarsening_and_refinement (local_solution_C1);
+        triangulation.execute_coarsening_and_refinement();
+
+        // 5) Redistribuisci DoF
+        dof_handler.distribute_dofs(fe);
+        locally_owned_dofs = dof_handler.locally_owned_dofs();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs(dof_handler);
+
+        // 6) Reinit dei nuovi vettori distrib
+        distributed_old_C1.reinit(locally_owned_dofs, mpi_communicator);
+        soltransC1.interpolate (distributed_old_C1);
+        
+        // 8) Riapplico vincoli
+        setup();
+
+        constraints.distribute(distributed_old_C1);
+        
+        // 9) Aggiorna anche i ghost
+        local_solution_old_C1.reinit(locally_owned_dofs, locally_relevant_dofs, mpi_communicator);
+        local_solution_C1 = distributed_old_C1;         // Per output
+        local_solution_old_C1 = distributed_old_C1;     // Per estrarre valore sol al passo next
+    }
+
+    // -----------------------------
+    // -------- Advection ----------
+    // -----------------------------
+    template &ltint dim&gt
+    class BoundaryConcentration : public Function&ltdim&gt
+    {
+    public:
+    BoundaryConcentration() : Function&ltdim&gt(), time(0.0) {}
+
+    // Metodo per impostare il valore del tempo
+    void set_time(double t) {
+        time = t;
+    }
+
+    virtual double value(const Point&ltdim&gt &p,
+                        const unsigned int component = 0) const override
+    {
+        // Parametri per il centro della palla
+        const double y0 = 0.05;
+        const double z0 = 0.05;
+        const double radius = 0.1 / 4.0;  // Raggio della palla
+        
+        // Calcolo della distanza al quadrato dal centro (punto di riferimento)
+        double distance_squared = 0.0;
+        if constexpr (dim == 2)
+        {
+        // 2D: distanza tra il punto p e il centro (y0, z0)
+        distance_squared = (p[1] - y0) * (p[1] - y0);
+        }
+        else if constexpr (dim == 3)
+        {
+        // 3D: distanza tra il punto p e il centro (y0, z0)
+        distance_squared = (p[1] - y0) * (p[1] - y0) + (p[2] - z0) * (p[2] - z0);
+        }
+        else
+        {
+        AssertThrow(false, ExcNotImplemented());
+        return 0.0;
+        }
+
+        // Condizione per determinare se il punto è all'interno della sfera
+        if (distance_squared &lt= radius * radius)
+        {
+        // Modifica dell'ampiezza in base al tempo (ora il tempo è passato esplicitamente)
+        double amplitude = 0.0;
+
+        if (time &lt 5.0) {
+            amplitude = time / 5.0;  // Cresce linearmente da 0 a 1
+        } else if (time &lt 10.0) {
+            amplitude = 1.0 - (time - 5.0) / 5.0;  // Decresce da 1 a 0
+        }
+
+        // Calcolo della "macchia" gaussiana
+        const double width = 0.01; // larghezza gaussiana
+        if constexpr (dim == 2)
+        {
+            // 2D: (x, y) =&gt macchia su y
+            return amplitude * std::exp(-((p[1] - y0) * (p[1] - y0)) / (width));
+        }
+        else if constexpr (dim == 3)
+        {
+            // 3D: (x, y, z) =&gt macchia su y,z
+            const double r2 = (p[1] - y0) * (p[1] - y0) + (p[2] - z0) * (p[2] - z0);
+            return amplitude * std::exp(-r2 / width);
+        }
+        else
+        {
+            AssertThrow(false, ExcNotImplemented());
+            return 0.0;
+        }
+        }
+        else
+        {
+        // Se il punto non è dentro la sfera, ritorna 0
+        return 0.0;
+        }
+    }
+
+    private:
+    double time;  // Variabile per il tempo
+    };
+
+    
+
+    template&ltint dim&gt
+    void Advection&ltdim&gt::setup_constraints ()
+    {
+        constraints.clear();
+        constraints.reinit(locally_relevant_dofs);
+    
+        DoFTools::make_hanging_node_constraints(dof_handler, constraints);
+    
+        constraints.close();
+    }
+
+    template&ltint dim&gt
+    void Advection&ltdim&gt::setup()
+    {
+        TimerOutput::Scope ts(computing_timer, "setup_system");
+        // Initialize the dofs contained locally as well as those of the near cells
+        locally_owned_dofs = dof_handler.locally_owned_dofs ();
+        locally_relevant_dofs = DoFTools::extract_locally_relevant_dofs (dof_handler);
+        
+        local_solution_C1.reinit (locally_owned_dofs, locally_relevant_dofs, mpi_communicator);
+        
+        // Initialize the contraints objects for BC and Hanging Nodes during refinement
+        system_rhs.reinit (locally_owned_dofs, mpi_communicator);
+        distributed_solution_C1.reinit (locally_owned_dofs, mpi_communicator);
+        
+        setup_constraints ();  // Qui unizializzo gli hanging nodes constrains (e le BC volendo)
+        
+        // Sparsity pattern initialization (where matrix has nonzero entries)
+        DynamicSparsityPattern dsp(locally_relevant_dofs);
+        DoFTools::make_sparsity_pattern (dof_handler,
+                                         dsp, 
+                                         constraints, 
+                                         false);
+        SparsityTools::distribute_sparsity_pattern (dsp,
+                                                    dof_handler.locally_owned_dofs (),
+                                                    mpi_communicator,
+                                                    locally_relevant_dofs);
+        
+        // Advection Matrix
+        system_matrix.reinit (locally_owned_dofs,
+                                      locally_owned_dofs, 
+                                      dsp, 
+                                      mpi_communicator);
+    }
+
+    template &ltint dim&gt
+    void Advection&ltdim&gt::set_initial_data()
+    {
+        TimerOutput::Scope ts(computing_timer, "set_initial_data");
+    
+        // 1) Inizializza i vettori globali con i valori iniziali costanti
+        distributed_solution_C1 = C1_0;
+        
+        // 2) Sincronizza i ghost‑values sui vettori globali
+        distributed_solution_C1.compress(VectorOperation::insert);
+        
+        // 3) Applica le condizioni di Dirichlet (especialmente su C2)
+        //    Questo usa setup_constraints e constraints già definiti
+        setup_constraints();
+        constraints.distribute(distributed_solution_C1);
+        
+        // 4) Copia nei vettori locali “split” e in quelli “old”
+        local_solution_C1     = distributed_solution_C1;
+        local_solution_old_C1 = distributed_solution_C1;
+       
+        // 5) Aggiorna i ghost‑values sui vettori locali
+        local_solution_C1.update_ghost_values();
+        local_solution_old_C1.update_ghost_values();
+    }
+
+    template&ltint dim&gt
+    void Advection&ltdim&gt::assemble(unsigned int current_timestep)
+    {
+        TimerOutput::Scope ts (computing_timer, "assembly");
+
+        // Clean the current matrices 
+        system_rhs = 0;
+        system_matrix = 0;
+
+        // Initialize the FEValues Objects
+        FEValues&ltdim&gt fe_values (fe, quadrature_formula,
+                                update_values | update_gradients |
+                                update_quadrature_points | update_JxW_values);
+
+        // Number of DoFs and Gauss points per cell
+        const unsigned int n_q_points = quadrature_formula.size ();
+        const unsigned int dofs_per_cell = fe.n_dofs_per_cell ();
+        
+        // Local Matrices and Vector
+        FullMatrix&ltdouble&gt cell_matrix (dofs_per_cell, dofs_per_cell);
+        Vector&ltdouble&gt cell_rhs (dofs_per_cell);
+
+        // Save cell values for C1
+        std::vector&ltdouble&gt sol_C1(n_q_points);
+        
+        // Create vector to store the local dof indices
+        std::vector&lttypes::global_dof_index&gt local_dof_indices (dofs_per_cell);
+        
+        // Create the diffusion tensor
+        SymmetricTensor&lt2, dim&gt diffusion_tensor;
+        for (unsigned int i=0; i&ltdim; i++) 
+            diffusion_tensor[i][i] = D;
+        
+        Tensor&lt1,dim&gt velocity_tensor;
+        velocity_tensor[0] = velocity;
+
+        // loop over the cells
+        for (const auto &cell : dof_handler.active_cell_iterators ())
+        {
+            if (cell-&gtis_locally_owned ())
+            {
+                // Reset the local matrix/rhs of the cell
+                cell_matrix = 0;
+                cell_rhs = 0;
+
+                fe_values.reinit (cell);
+                fe_values.get_function_values(local_solution_old_C1, sol_C1);
+                 
+                // loop over the gauss point of the cell
+                for (const unsigned int q_point : fe_values.quadrature_point_indices())
+                {
+                    const double JxW = fe_values.JxW(q_point);  // Jacobiano * peso del punto di quadratura
+
+                    for (const unsigned int i : fe_values.dof_indices())
+                    {
+                        const double phi_i = fe_values.shape_value(i, q_point);
+                        const Tensor&lt1, dim&gt grad_phi_i = fe_values.shape_grad(i, q_point);
+
+                        for (const unsigned int j : fe_values.dof_indices())
+                        {
+                            const double phi_j = fe_values.shape_value(j, q_point);
+                            const Tensor&lt1, dim&gt grad_phi_j = fe_values.shape_grad(j, q_point);
+
+                            // Mass term (1/Δt) * (phi_i * phi_j)
+                            cell_matrix(i, j) += (phi_i * phi_j) / dt * JxW;
+
+                            // Convection term: phi_i * (v ⋅ ∇phi_j)
+                            cell_matrix(i, j) += phi_i * (velocity_tensor * grad_phi_j) * JxW;
+
+                            // Diffusion term: (∇phi_i) ⋅ D ⋅ (∇phi_j)
+                            cell_matrix(i, j) += grad_phi_i * diffusion_tensor * grad_phi_j * JxW;
+                        }
+
+                        // RHS term: (1/Δt) * phi_i * u^n
+                        cell_rhs(i) += phi_i * sol_C1[q_point] / dt * JxW;
+
+                        // Optional source term f(x): add here if needed
+                        // cell_rhs(i) += phi_i * source_value(q_point) * JxW;
+                    }
+                }
+                cell-&gtget_dof_indices (local_dof_indices);
+                constraints.distribute_local_to_global (cell_matrix,
+                                                        cell_rhs, 
+                                                        local_dof_indices, 
+                                                        system_matrix,
+                                                        system_rhs);
+            }
+        }
+        system_matrix.compress (VectorOperation::add);
+        system_rhs.compress (VectorOperation::add);
+
+        // Now set the BC
+        std::map&lttypes::global_dof_index, double&gt boundary_values;
+        BoundaryConcentration&ltdim&gt inflow_function;
+        inflow_function.set_time(current_timestep);
+        VectorTools::interpolate_boundary_values(dof_handler,
+                                                 0,                // boundary_id per x = 0
+                                                 inflow_function,  // la tua funzione gaussiana
+                                                 boundary_values);
+        
+        PETScWrappers::MPI::Vector tmp(locally_owned_dofs, mpi_communicator);
+        MatrixTools::apply_boundary_values(boundary_values, system_matrix, tmp, system_rhs, false);       
+        distributed_solution_C1 = tmp;
+    }
+
+    template&ltint dim&gt
+    void Advection&ltdim&gt::solve_linear_problem()
+    {
+        TimerOutput::Scope ts(computing_timer, "solve_linear_system");
+    
+        SolverControl solver_control(1000, 1e-12 * system_rhs.l2_norm());
+        SolverGMRES&ltPETScWrappers::MPI::Vector&gt solver(solver_control);
+    
+        // Precondizionatore identità
+        dealii::PreconditionIdentity preconditioner;
+    
+        solver.solve(system_matrix,
+                     distributed_solution_C1,
+                     system_rhs,
+                     preconditioner);
+    
+        pcout &lt&lt "   Solved in " &lt&lt solver_control.last_step() &lt&lt " iterations." &lt&lt std::endl;
+    
+        constraints.distribute(distributed_solution_C1);
+    }
+    
+    // -----------------------------
+    // ---------- OUTPUT -----------
+    // -----------------------------
+    // Solution
+    template &ltint dim&gt
+    void Advection&ltdim&gt::output_results(const unsigned int load_step) const
+    {
+        DataOut&ltdim&gt data_out;
+
+        // Aggiungo i tre campi SCALARI: C1
+        data_out.add_data_vector(dof_handler, local_solution_C1, "C1");
+        
+        // Subdomain (per mappare MPI rank)
+        Vector&ltdouble&gt subdomain(triangulation.n_active_cells());
+        for (unsigned int i = 0; i &lt subdomain.size(); ++i)
+            subdomain(i) = triangulation.locally_owned_subdomain();
+        
+        data_out.add_data_vector(subdomain, "subdomain");
+        data_out.build_patches();
+
+        const std::string filename = 
+        data_out.write_vtu_with_pvtu_record("./",
+                                            "solution",
+                                            load_step,
+                                            mpi_communicator);
+
+        if (this_mpi_process == 0)
+        {
+            static std::vector&ltstd::pair&ltdouble, std::string&gt&gt times_and_names;
+            times_and_names.emplace_back(load_step, filename);
+            std::ofstream pvd_output("./solution.pvd");
+            DataOutBase::write_pvd_record(pvd_output, times_and_names);
+        }
+    }
+
+    // -----------------------------
+    // ----------- RUN -------------
+    // -----------------------------
+    template &ltint dim&gt
+    void Advection&ltdim&gt::run()
+    {
+        Timer timer;
+        timer.start ();
+        pcout &lt&lt "Running on " &lt&lt Utilities::MPI::n_mpi_processes (mpi_communicator) &lt&lt " MPI rank(s)..." &lt&lt std::endl;
+
+        create_mesh();
+        setup();
+        set_initial_data();
+
+        for (unsigned int step = 0; step &lt= n_steps; ++step)
+        {
+            const double time = step * dt;
+            pcout &lt&lt " --- Time step : " &lt&lt time &lt&lt std::endl;
+
+            assemble(step);
+            solve_linear_problem();
+
+            // --- C1: update & backup ---
+            local_solution_C1 = distributed_solution_C1;
+            local_solution_C1.update_ghost_values();
+            local_solution_old_C1 = distributed_solution_C1;
+            local_solution_old_C1.update_ghost_values();
+
+            // ---------- Refinement & Output ----------
+            refine_mesh();  // dentro questa viene fatto setup() + interpolate
+            pcout &lt&lt "  Total New Number of globally active cells:       "  &lt&lt triangulation.n_global_active_cells () &lt&lt std::endl
+                  &lt&lt "  New Number of degrees of freedom: " &lt&lt dof_handler.n_dofs () &lt&lt std::endl;
+
+            output_results(step);
+
+            computing_timer.print_summary();
+            computing_timer.reset();
+        }
+
+        timer.stop ();
+        pcout &lt&lt "Total run time: " &lt&lt timer.wall_time () &lt&lt " seconds." &lt&lt std::endl;
+    }
+} // End of namespace Advection
+
+// -----------------------------
+// ---------- MAIIN ------------
+// -----------------------------
+int main (int argc, char *argv[])
+{
+    try
+    {
+        using namespace dealii;
+        using namespace diff;
+
+        Utilities::MPI::MPI_InitFinalize mpi_initialization (argc, argv, 1);
+
+        Advection&lt2&gt Advection;
+        Advection.run ();
+    }
+    catch (std::exception &exc)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Exception on processing: " &lt&lt std::endl &lt&lt exc.what ()
+        &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+
+        return 1;
+    }
+    catch (...)
+    {
+        std::cerr &lt&lt std::endl &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        std::cerr &lt&lt "Unknown exception!" &lt&lt std::endl &lt&lt "Aborting!" &lt&lt std::endl
+        &lt&lt "----------------------------------------------------" &lt&lt std::endl;
+        return 1;
+    }
+
+    return 0;
+}
+        </pre>
+    </div>
+</section>
 <!-- Aggiungi il tasto per tornare alla prima pagina -->
 <a href="{{ site.baseurl }}/pages/initial.html" class="back-button back-link">Back</a>
